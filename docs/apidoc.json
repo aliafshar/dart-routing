@@ -1,0 +1,1984 @@
+
+[
+  {
+    "kind": "library",
+    "name": "routing",
+    "children": [
+      {
+        "returnType": {
+          "name": "int",
+          "refId": "int"
+        },
+        "kind": "method",
+        "comment": "\nParses an integer, returning the integer on success, or [null] on failure.\n\n",
+        "name": "intParser",
+        "children": [
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "param",
+            "name": "value",
+            "id": "value"
+          }
+        ],
+        "id": "intParser1()"
+      },
+      {
+        "returnType": {
+          "name": "List",
+          "refId": "List",
+          "arguments": [
+            {
+              "name": "Tuple",
+              "refId": "Tuple"
+            }
+          ]
+        },
+        "kind": "method",
+        "name": "zip",
+        "children": [
+          {
+            "ref": {
+              "name": "List",
+              "refId": "List"
+            },
+            "kind": "param",
+            "name": "fsts",
+            "id": "fsts"
+          },
+          {
+            "ref": {
+              "name": "List",
+              "refId": "List"
+            },
+            "kind": "param",
+            "name": "snds",
+            "id": "snds"
+          }
+        ],
+        "id": "zip2()"
+      },
+      {
+        "interfaces": [
+          {
+            "name": "Exception",
+            "refId": "Exception"
+          }
+        ],
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nThe error that is thrown when a route cannot be built.\n\n",
+        "name": "RouteBuildError",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "RouteBuildError",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "msg",
+                "id": "msg"
+              }
+            ],
+            "id": "RouteBuildError1()"
+          },
+          {
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "name": "toString",
+            "id": "toString0()"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "prefix",
+            "id": "prefix"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "msg",
+            "id": "msg"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "RouteBuildError",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "msg",
+                "id": "msg"
+              }
+            ],
+            "id": "RouteBuildError1()"
+          }
+        ],
+        "id": "RouteBuildError"
+      },
+      {
+        "interfaces": [
+          {
+            "name": "Exception",
+            "refId": "Exception"
+          }
+        ],
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nThe error that is thrown when a route cannot be parsed.\n\n",
+        "name": "RouteParseError",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "RouteParseError",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "msg",
+                "id": "msg"
+              }
+            ],
+            "id": "RouteParseError1()"
+          },
+          {
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "name": "toString",
+            "id": "toString0()"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "prefix",
+            "id": "prefix"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "msg",
+            "id": "msg"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "RouteParseError",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "msg",
+                "id": "msg"
+              }
+            ],
+            "id": "RouteParseError1()"
+          }
+        ],
+        "id": "RouteParseError"
+      },
+      {
+        "interfaces": [
+          {
+            "name": "RouteComponent",
+            "refId": "RouteComponent"
+          }
+        ],
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "name": "RouteStatic",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "RouteStatic",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "prefix",
+                "id": "prefix"
+              },
+              {
+                "ref": {
+                  "name": "Path",
+                  "refId": "Path"
+                },
+                "kind": "param",
+                "name": "path",
+                "id": "path"
+              }
+            ],
+            "id": "RouteStatic2()"
+          },
+          {
+            "returnType": {
+              "name": "Map",
+              "refId": "Map",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                },
+                {
+                  "name": "dynamic",
+                  "refId": "dynamic"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "match",
+            "children": [
+              {
+                "ref": {
+                  "name": "HttpRequest",
+                  "refId": "HttpRequest"
+                },
+                "kind": "param",
+                "name": "request",
+                "id": "request"
+              }
+            ],
+            "id": "match1()"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "prefix",
+            "id": "prefix"
+          },
+          {
+            "ref": {
+              "name": "Path",
+              "refId": "Path"
+            },
+            "kind": "property",
+            "name": "path",
+            "id": "path"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "RouteStatic",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "prefix",
+                "id": "prefix"
+              },
+              {
+                "ref": {
+                  "name": "Path",
+                  "refId": "Path"
+                },
+                "kind": "param",
+                "name": "path",
+                "id": "path"
+              }
+            ],
+            "id": "RouteStatic2()"
+          }
+        ],
+        "id": "RouteStatic"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nA map of routes.\n\n",
+        "name": "RouteMap",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nCreates a new route map.\n\n",
+            "name": "RouteMap",
+            "id": "RouteMap0()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nAdds a route to this map.\n\n",
+            "name": "add",
+            "children": [
+              {
+                "ref": {
+                  "name": "Route",
+                  "refId": "Route"
+                },
+                "kind": "param",
+                "name": "route",
+                "id": "route"
+              }
+            ],
+            "id": "add1()"
+          },
+          {
+            "returnType": {
+              "name": "RouteMatch",
+              "refId": "RouteMatch"
+            },
+            "kind": "method",
+            "comment": "\nMatches and returns the first matched route, or null if there is no match.\n\n",
+            "name": "match",
+            "children": [
+              {
+                "ref": {
+                  "name": "HttpRequest",
+                  "refId": "HttpRequest"
+                },
+                "kind": "param",
+                "name": "request",
+                "id": "request"
+              }
+            ],
+            "id": "match1()"
+          },
+          {
+            "returnType": {
+              "name": "Function",
+              "refId": "Function"
+            },
+            "kind": "method",
+            "comment": "\nFinds a view for a named route.\n\n",
+            "name": "findView",
+            "children": [
+              {
+                "ref": {
+                  "name": "RouteMatch",
+                  "refId": "RouteMatch"
+                },
+                "kind": "param",
+                "name": "m",
+                "id": "m"
+              }
+            ],
+            "id": "findView1()"
+          },
+          {
+            "ref": {
+              "name": "List",
+              "refId": "List",
+              "arguments": [
+                {
+                  "name": "Route",
+                  "refId": "Route"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "routeList",
+            "id": "routeList"
+          },
+          {
+            "ref": {
+              "name": "Map",
+              "refId": "Map",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                },
+                {
+                  "name": "Route",
+                  "refId": "Route"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "routes",
+            "id": "routes"
+          },
+          {
+            "ref": {
+              "name": "Map",
+              "refId": "Map",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                },
+                {
+                  "name": "Function",
+                  "refId": "Function"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "views",
+            "id": "views"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "comment": "\nCreates a new route map.\n\n",
+            "name": "RouteMap",
+            "id": "RouteMap0()"
+          }
+        ],
+        "id": "RouteMap"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nA matched route.\n\nContains the route and any arguments generated during match.\n\n",
+        "name": "RouteMatch",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "RouteMatch",
+            "children": [
+              {
+                "ref": {
+                  "name": "Route",
+                  "refId": "Route"
+                },
+                "kind": "param",
+                "name": "route",
+                "id": "route"
+              },
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "name",
+                "id": "name"
+              },
+              {
+                "ref": {
+                  "name": "Map",
+                  "refId": "Map",
+                  "arguments": [
+                    {
+                      "name": "String",
+                      "refId": "String"
+                    },
+                    {
+                      "name": "dynamic",
+                      "refId": "dynamic"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "args",
+                "id": "args"
+              }
+            ],
+            "id": "RouteMatch3()"
+          },
+          {
+            "returnType": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "method",
+            "name": "error",
+            "id": "error0()"
+          },
+          {
+            "returnType": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "method",
+            "name": "isError",
+            "id": "isError0()"
+          },
+          {
+            "returnType": {
+              "name": "Path",
+              "refId": "Path"
+            },
+            "kind": "method",
+            "name": "filepath",
+            "id": "filepath0()"
+          },
+          {
+            "returnType": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "method",
+            "name": "isFile",
+            "id": "isFile0()"
+          },
+          {
+            "ref": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "property",
+            "name": "error",
+            "id": "error"
+          },
+          {
+            "ref": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "property",
+            "name": "isError",
+            "id": "isError"
+          },
+          {
+            "ref": {
+              "name": "Path",
+              "refId": "Path"
+            },
+            "kind": "property",
+            "name": "filepath",
+            "id": "filepath"
+          },
+          {
+            "ref": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "property",
+            "name": "isFile",
+            "id": "isFile"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "name",
+            "id": "name"
+          },
+          {
+            "ref": {
+              "name": "Route",
+              "refId": "Route"
+            },
+            "kind": "property",
+            "name": "route",
+            "id": "route"
+          },
+          {
+            "ref": {
+              "name": "Map",
+              "refId": "Map",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                },
+                {
+                  "name": "dynamic",
+                  "refId": "dynamic"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "args",
+            "id": "args"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "method",
+            "id": "method"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "protocol",
+            "id": "protocol"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "RouteMatch",
+            "children": [
+              {
+                "ref": {
+                  "name": "Route",
+                  "refId": "Route"
+                },
+                "kind": "param",
+                "name": "route",
+                "id": "route"
+              },
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "name",
+                "id": "name"
+              },
+              {
+                "ref": {
+                  "name": "Map",
+                  "refId": "Map",
+                  "arguments": [
+                    {
+                      "name": "String",
+                      "refId": "String"
+                    },
+                    {
+                      "name": "dynamic",
+                      "refId": "dynamic"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "args",
+                "id": "args"
+              }
+            ],
+            "id": "RouteMatch3()"
+          }
+        ],
+        "id": "RouteMatch"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nA matchable route.\n\nThis optionally matches a route and a method.\n\n",
+        "name": "Route",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nCreates a new route.\n\n",
+            "name": "Route",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "name",
+                "id": "name"
+              },
+              {
+                "ref": {
+                  "name": "RoutePath",
+                  "refId": "RoutePath"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "path",
+                "id": "path"
+              },
+              {
+                "ref": {
+                  "name": "RouteMethod",
+                  "refId": "RouteMethod"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "method",
+                "id": "method"
+              },
+              {
+                "ref": {
+                  "name": "RouteStatic",
+                  "refId": "RouteStatic"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "static",
+                "id": "static"
+              }
+            ],
+            "id": "Route4()"
+          },
+          {
+            "returnType": {
+              "name": "RouteMatch",
+              "refId": "RouteMatch"
+            },
+            "kind": "method",
+            "comment": "\nMatches this route against an HTTP request.\n\nReturns a [RouteMatch] or [null] when the request does not match.\n\n",
+            "name": "match",
+            "children": [
+              {
+                "ref": {
+                  "name": "HttpRequest",
+                  "refId": "HttpRequest"
+                },
+                "kind": "param",
+                "name": "request",
+                "id": "request"
+              }
+            ],
+            "id": "match1()"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "name",
+            "id": "name"
+          },
+          {
+            "ref": {
+              "name": "RoutePath",
+              "refId": "RoutePath"
+            },
+            "kind": "property",
+            "name": "path",
+            "id": "path"
+          },
+          {
+            "ref": {
+              "name": "RouteMethod",
+              "refId": "RouteMethod"
+            },
+            "kind": "property",
+            "name": "method",
+            "id": "method"
+          },
+          {
+            "ref": {
+              "name": "RouteStatic",
+              "refId": "RouteStatic"
+            },
+            "kind": "property",
+            "name": "static",
+            "id": "static"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "comment": "\nCreates a new route.\n\n",
+            "name": "Route",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "name",
+                "id": "name"
+              },
+              {
+                "ref": {
+                  "name": "RoutePath",
+                  "refId": "RoutePath"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "path",
+                "id": "path"
+              },
+              {
+                "ref": {
+                  "name": "RouteMethod",
+                  "refId": "RouteMethod"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "method",
+                "id": "method"
+              },
+              {
+                "ref": {
+                  "name": "RouteStatic",
+                  "refId": "RouteStatic"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "static",
+                "id": "static"
+              }
+            ],
+            "id": "Route4()"
+          }
+        ],
+        "id": "Route"
+      },
+      {
+        "interfaces": [
+          {
+            "name": "RouteComponent",
+            "refId": "RouteComponent"
+          }
+        ],
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nThe path component of a [Route].\n\n",
+        "name": "RoutePath",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nCreates a new path from a list of [segments].\n\n",
+            "name": "RoutePath",
+            "children": [
+              {
+                "ref": {
+                  "name": "List",
+                  "refId": "List",
+                  "arguments": [
+                    {
+                      "name": "RouteSegment",
+                      "refId": "RouteSegment"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "segments",
+                "id": "segments"
+              }
+            ],
+            "id": "RoutePath1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nCreates a new [RoutePath] from a string path.\n\n",
+            "name": "RoutePath.fromPath",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "path",
+                "id": "path"
+              }
+            ],
+            "id": "RoutePath.fromPath1()"
+          },
+          {
+            "isStatic": true,
+            "returnType": {
+              "name": "List",
+              "refId": "List",
+              "arguments": [
+                {
+                  "name": "RouteSegment",
+                  "refId": "RouteSegment"
+                }
+              ]
+            },
+            "kind": "method",
+            "comment": "\nParses a path into a list of segments.\n\n",
+            "name": "parse",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "path",
+                "id": "path"
+              }
+            ],
+            "id": "parse1()"
+          },
+          {
+            "isStatic": true,
+            "returnType": {
+              "name": "List",
+              "refId": "List",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "split",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "path",
+                "id": "path"
+              }
+            ],
+            "id": "split1()"
+          },
+          {
+            "isStatic": true,
+            "returnType": {
+              "name": "RouteSegment",
+              "refId": "RouteSegment"
+            },
+            "kind": "method",
+            "name": "parseSegment",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "value",
+                "id": "value"
+              }
+            ],
+            "id": "parseSegment1()"
+          },
+          {
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "comment": "\nBuilds a path from given [args].\n\n",
+            "name": "build",
+            "children": [
+              {
+                "ref": {
+                  "name": "Map",
+                  "refId": "Map",
+                  "arguments": [
+                    {
+                      "name": "String",
+                      "refId": "String"
+                    },
+                    {
+                      "name": "dynamic",
+                      "refId": "dynamic"
+                    }
+                  ]
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "args",
+                "id": "args"
+              }
+            ],
+            "id": "build1()"
+          },
+          {
+            "returnType": {
+              "name": "Map",
+              "refId": "Map",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                },
+                {
+                  "name": "dynamic",
+                  "refId": "dynamic"
+                }
+              ]
+            },
+            "kind": "method",
+            "comment": "\nMatches the [RoutePath] against a given [path].\n\nOn success, this returns arguments for the route. On failure returns\n[null].\n\n",
+            "name": "match",
+            "children": [
+              {
+                "ref": {
+                  "name": "HttpRequest",
+                  "refId": "HttpRequest"
+                },
+                "kind": "param",
+                "name": "request",
+                "id": "request"
+              }
+            ],
+            "id": "match1()"
+          },
+          {
+            "ref": {
+              "name": "List",
+              "refId": "List",
+              "arguments": [
+                {
+                  "name": "RouteSegment",
+                  "refId": "RouteSegment"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "segments",
+            "id": "segments"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "comment": "\nCreates a new path from a list of [segments].\n\n",
+            "name": "RoutePath",
+            "children": [
+              {
+                "ref": {
+                  "name": "List",
+                  "refId": "List",
+                  "arguments": [
+                    {
+                      "name": "RouteSegment",
+                      "refId": "RouteSegment"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "segments",
+                "id": "segments"
+              }
+            ],
+            "id": "RoutePath1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "comment": "\nCreates a new [RoutePath] from a string path.\n\n",
+            "name": "RoutePath.fromPath",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "path",
+                "id": "path"
+              }
+            ],
+            "id": "RoutePath.fromPath1()"
+          }
+        ],
+        "id": "RoutePath"
+      },
+      {
+        "interfaces": [
+          {
+            "name": "RouteSegment",
+            "refId": "RouteSegment"
+          }
+        ],
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nA variable route path segment.\n\nVariable segments are defined as a variable name, and optional type (default\nis String), for example:\n\n    // A segment containing a variable named `name`.\n    var s = new RouteVariableSegment.fromSegment('<name>');\n\n    // A segment containing an integer variable named `blogid`.\n    var s = new RouteVariableSegment.fromSegment('<int:blogid>');\n\n",
+        "name": "RouteVariableSegment",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "RouteVariableSegment",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "key",
+                "id": "key"
+              },
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "type",
+                "id": "type"
+              }
+            ],
+            "id": "RouteVariableSegment2()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nCreates a new variable segment from a string.\n\n",
+            "name": "RouteVariableSegment.fromSegment",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "seg",
+                "id": "seg"
+              }
+            ],
+            "id": "RouteVariableSegment.fromSegment1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nParses a string component.\n\nFor [RouteVariableSegment]s this returns the parsed value, or [null] if\nthe value does not match.\n\n",
+            "name": "parse",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "value",
+                "id": "value"
+              }
+            ],
+            "id": "parse1()"
+          },
+          {
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "comment": "\nBuilds a path component from this segment.\n\nFor variable segments, this returns a <key, value> map or raises an error\non failure if incorrect/missing arguments are providedd.\n\n",
+            "name": "build",
+            "children": [
+              {
+                "ref": {
+                  "name": "Map",
+                  "refId": "Map",
+                  "arguments": [
+                    {
+                      "name": "String",
+                      "refId": "String"
+                    },
+                    {
+                      "name": "dynamic",
+                      "refId": "dynamic"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "args",
+                "id": "args"
+              }
+            ],
+            "id": "build1()"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "key",
+            "id": "key"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "type",
+            "id": "type"
+          },
+          {
+            "ref": {
+              "name": "Map",
+              "refId": "Map",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                },
+                {
+                  "name": "Function",
+                  "refId": "Function"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "typeMap",
+            "id": "typeMap"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "RouteVariableSegment",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "key",
+                "id": "key"
+              },
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "type",
+                "id": "type"
+              }
+            ],
+            "id": "RouteVariableSegment2()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "comment": "\nCreates a new variable segment from a string.\n\n",
+            "name": "RouteVariableSegment.fromSegment",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "seg",
+                "id": "seg"
+              }
+            ],
+            "id": "RouteVariableSegment.fromSegment1()"
+          }
+        ],
+        "id": "RouteVariableSegment"
+      },
+      {
+        "interfaces": [
+          {
+            "name": "RouteSegment",
+            "refId": "RouteSegment"
+          }
+        ],
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nA constant route path segment.\n\nConstant segments are simply matched as a string, and contain no variables.\n\n",
+        "name": "RouteConstantSegment",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nCreates a new named segment.\n\n",
+            "name": "RouteConstantSegment",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "key",
+                "id": "key"
+              }
+            ],
+            "id": "RouteConstantSegment1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nCreates a new named segment.\n\n",
+            "name": "RouteConstantSegment.fromSegment",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "key",
+                "id": "key"
+              }
+            ],
+            "id": "RouteConstantSegment.fromSegment1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nParses a string component.\n\nFor [RouteConstantSegment]s this returns whether the component matches\nthe given component.\n\n",
+            "name": "parse",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "value",
+                "id": "value"
+              }
+            ],
+            "id": "parse1()"
+          },
+          {
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "comment": "\nBuilds a path component from this segment.\n\nFor constant segments, this is the name of the segment.\n\n",
+            "name": "build",
+            "children": [
+              {
+                "ref": {
+                  "name": "Map",
+                  "refId": "Map",
+                  "arguments": [
+                    {
+                      "name": "String",
+                      "refId": "String"
+                    },
+                    {
+                      "name": "dynamic",
+                      "refId": "dynamic"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "args",
+                "id": "args"
+              }
+            ],
+            "id": "build1()"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "key",
+            "id": "key"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "comment": "\nCreates a new named segment.\n\n",
+            "name": "RouteConstantSegment",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "key",
+                "id": "key"
+              }
+            ],
+            "id": "RouteConstantSegment1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "comment": "\nCreates a new named segment.\n\n",
+            "name": "RouteConstantSegment.fromSegment",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "key",
+                "id": "key"
+              }
+            ],
+            "id": "RouteConstantSegment.fromSegment1()"
+          }
+        ],
+        "id": "RouteConstantSegment"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nA segment of a [RoutePath].\n\n",
+        "name": "RouteSegment",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nParses a path component into a segment.\n\n",
+            "name": "parse",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "value",
+                "id": "value"
+              }
+            ],
+            "id": "parse1()"
+          },
+          {
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "comment": "\nBuilds a path component from a segment.\n\n",
+            "name": "build",
+            "children": [
+              {
+                "ref": {
+                  "name": "Map",
+                  "refId": "Map",
+                  "arguments": [
+                    {
+                      "name": "String",
+                      "refId": "String"
+                    },
+                    {
+                      "name": "dynamic",
+                      "refId": "dynamic"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "args",
+                "id": "args"
+              }
+            ],
+            "id": "build1()"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "key",
+            "id": "key"
+          }
+        ],
+        "id": "RouteSegment"
+      },
+      {
+        "interfaces": [
+          {
+            "name": "RouteComponent",
+            "refId": "RouteComponent"
+          }
+        ],
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nThe method component of a [Route].\n\n",
+        "name": "RouteMethod",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "RouteMethod",
+            "children": [
+              {
+                "ref": {
+                  "name": "List",
+                  "refId": "List",
+                  "arguments": [
+                    {
+                      "name": "String",
+                      "refId": "String"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "methods",
+                "id": "methods"
+              }
+            ],
+            "id": "RouteMethod1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "RouteMethod.fromAnything",
+            "children": [
+              {
+                "ref": {
+                  "name": "dynamic",
+                  "refId": "dynamic"
+                },
+                "kind": "param",
+                "name": "arg",
+                "id": "arg"
+              }
+            ],
+            "id": "RouteMethod.fromAnything1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "RouteMethod.get",
+            "id": "RouteMethod.get0()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "RouteMethod.post",
+            "id": "RouteMethod.post0()"
+          },
+          {
+            "returnType": {
+              "name": "Map",
+              "refId": "Map",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                },
+                {
+                  "name": "String",
+                  "refId": "String"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "match",
+            "children": [
+              {
+                "ref": {
+                  "name": "HttpRequest",
+                  "refId": "HttpRequest"
+                },
+                "kind": "param",
+                "name": "request",
+                "id": "request"
+              }
+            ],
+            "id": "match1()"
+          },
+          {
+            "ref": {
+              "name": "Set",
+              "refId": "Set",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "methods",
+            "id": "methods"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "RouteMethod",
+            "children": [
+              {
+                "ref": {
+                  "name": "List",
+                  "refId": "List",
+                  "arguments": [
+                    {
+                      "name": "String",
+                      "refId": "String"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "methods",
+                "id": "methods"
+              }
+            ],
+            "id": "RouteMethod1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "RouteMethod.fromAnything",
+            "children": [
+              {
+                "ref": {
+                  "name": "dynamic",
+                  "refId": "dynamic"
+                },
+                "kind": "param",
+                "name": "arg",
+                "id": "arg"
+              }
+            ],
+            "id": "RouteMethod.fromAnything1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "RouteMethod.get",
+            "id": "RouteMethod.get0()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "RouteMethod.post",
+            "id": "RouteMethod.post0()"
+          }
+        ],
+        "id": "RouteMethod"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "name": "Interfaces",
+        "id": "Interfaces"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nA matchable component of a request, such as its path or method.\n\n",
+        "name": "RouteComponent",
+        "children": [
+          {
+            "returnType": {
+              "name": "Map",
+              "refId": "Map",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                },
+                {
+                  "name": "dynamic",
+                  "refId": "dynamic"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "match",
+            "children": [
+              {
+                "ref": {
+                  "name": "HttpRequest",
+                  "refId": "HttpRequest"
+                },
+                "kind": "param",
+                "name": "request",
+                "id": "request"
+              }
+            ],
+            "id": "match1()"
+          }
+        ],
+        "id": "RouteComponent"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "name": "Tuple",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "Tuple",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "fst",
+                "id": "fst"
+              },
+              {
+                "ref": {
+                  "name": "B",
+                  "refId": "B"
+                },
+                "kind": "param",
+                "name": "snd",
+                "id": "snd"
+              }
+            ],
+            "id": "Tuple2()"
+          },
+          {
+            "returnType": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "method",
+            "name": "hashCode",
+            "id": "hashCode0()"
+          },
+          {
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "name": "toString",
+            "id": "toString0()"
+          },
+          {
+            "ref": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "property",
+            "name": "hashCode",
+            "id": "hashCode"
+          },
+          {
+            "ref": {
+              "name": "A",
+              "refId": "A"
+            },
+            "kind": "property",
+            "name": "fst",
+            "id": "fst"
+          },
+          {
+            "ref": {
+              "name": "B",
+              "refId": "B"
+            },
+            "kind": "property",
+            "name": "snd",
+            "id": "snd"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "Tuple",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "fst",
+                "id": "fst"
+              },
+              {
+                "ref": {
+                  "name": "B",
+                  "refId": "B"
+                },
+                "kind": "param",
+                "name": "snd",
+                "id": "snd"
+              }
+            ],
+            "id": "Tuple2()"
+          }
+        ],
+        "id": "Tuple"
+      }
+    ],
+    "id": "file:///usr/local/google/home/afshar/src/arzio/google3/dart-routing/lib/routing.dart"
+  }
+]

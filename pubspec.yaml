@@ -1,0 +1,10 @@
+# Copyright (c) 2012, Google Inc
+
+name:         routing
+version:      0.2.0
+author:       Ali Afshar <afshar@google.com>
+description:  HTTP routing library for Dart.
+homepage:     https://github.com/aliafshar/dart-routing
+
+dependencies:
+  unittest: any

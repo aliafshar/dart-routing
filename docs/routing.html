@@ -1,0 +1,169 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>routing Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="routing">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="routing.html">routing</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+<h2><strong>routing</strong> library</h2>
+<div>
+<h3>Functions</h3>
+<div class="method"><h4 id="intParser">
+<button class="show-code">Code</button>
+int <strong>intParser</strong>(String value) <a class="anchor-link" href="#intParser"
+              title="Permalink to intParser">#</a></h4>
+<div class="doc">
+<p>Parses an integer, returning the integer on success, or <code>null</code> on failure.</p>
+<pre class="source">
+int intParser(String value) {
+ try {
+   return int.parse(value);
+ } on FormatException {
+   return null;
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="zip">
+<button class="show-code">Code</button>
+List&lt;<a href="routing/Tuple.html">Tuple</a>&gt; <strong>zip</strong>(List fsts, List snds) <a class="anchor-link" href="#zip"
+              title="Permalink to zip">#</a></h4>
+<div class="doc">
+<pre class="source">
+List&lt;Tuple&gt; zip(List fsts, List snds) {
+ var z = &lt;Tuple&gt;[];
+ int l = math.min(fsts.length, snds.length);
+ for (int i = 0; i &lt; l; i++) {
+   z.add(new Tuple(fsts[i], snds[i]));
+ }
+ return z;
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Abstract Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="routing/RouteComponent.html"><strong>RouteComponent</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="routing/RouteSegment.html"><strong>RouteSegment</strong></a>
+          </h4>
+          </div>
+          
+</div>
+<div>
+<h3>Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="routing/Interfaces.html"><strong>Interfaces</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="routing/Route.html"><strong>Route</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="routing/RouteConstantSegment.html"><strong>RouteConstantSegment</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="routing/RouteMap.html"><strong>RouteMap</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="routing/RouteMatch.html"><strong>RouteMatch</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="routing/RouteMethod.html"><strong>RouteMethod</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="routing/RoutePath.html"><strong>RoutePath</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="routing/RouteStatic.html"><strong>RouteStatic</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="routing/RouteVariableSegment.html"><strong>RouteVariableSegment</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="routing/Tuple.html"><strong>Tuple&lt;A, B&gt;</strong></a>
+          </h4>
+          </div>
+          
+</div>
+<div>
+<h3>Exceptions</h3>
+          <div class="type">
+          <h4>
+            <a href="routing/RouteBuildError.html"><strong>RouteBuildError</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="routing/RouteParseError.html"><strong>RouteParseError</strong></a>
+          </h4>
+          </div>
+          
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-12-28 14:32:04.912</div>
+        </div>
+        <script async src="client-live-nav.js"></script>
+        </body></html>
+        

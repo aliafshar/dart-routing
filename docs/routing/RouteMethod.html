@@ -1,0 +1,172 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>RouteMethod class / routing Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="routing" data-type="RouteMethod">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../routing.html">routing</a> &rsaquo; <a href="../routing/RouteMethod.html">RouteMethod</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>RouteMethod</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>The method component of a <a class="crossref" href="../routing/Route.html">Route</a>.</p>
+<pre class="source">
+class RouteMethod implements RouteComponent {
+
+ Set&lt;String&gt; methods;
+
+ RouteMethod(List&lt;String&gt; methods) {
+   this.methods = new Set.from(methods);
+ }
+
+ factory RouteMethod.fromAnything(dynamic arg) {
+   if (arg is List&lt;String&gt;) {
+     return new RouteMethod(arg);
+   }
+   else if (arg is String) {
+     return new RouteMethod([arg]);
+   }
+   else throw new RouteParseError('Cannot get methods from $arg.');
+ }
+
+ factory RouteMethod.get() {
+   return new RouteMethod(['GET']);
+ }
+
+ factory RouteMethod.post() {
+   return new RouteMethod(['POST']);
+ }
+
+ Map&lt;String, String&gt; match(HttpRequest request) {
+   return methods.contains(request.method) ? {'__method__': request.method}
+                                           : {'__error__' : 405};
+ }
+
+
+}
+</pre>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../routing/RouteComponent.html">RouteComponent</a></span></p>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="RouteMethod">
+<button class="show-code">Code</button>
+new <strong>RouteMethod</strong>(List&lt;String&gt; methods) <a class="anchor-link" href="#RouteMethod"
+              title="Permalink to RouteMethod.RouteMethod">#</a></h4>
+<div class="doc">
+<pre class="source">
+RouteMethod(List&lt;String&gt; methods) {
+ this.methods = new Set.from(methods);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="RouteMethod.fromAnything">
+<button class="show-code">Code</button>
+factory <strong>RouteMethod.fromAnything</strong>(arg) <a class="anchor-link" href="#RouteMethod.fromAnything"
+              title="Permalink to RouteMethod.RouteMethod.fromAnything">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory RouteMethod.fromAnything(dynamic arg) {
+ if (arg is List&lt;String&gt;) {
+   return new RouteMethod(arg);
+ }
+ else if (arg is String) {
+   return new RouteMethod([arg]);
+ }
+ else throw new RouteParseError('Cannot get methods from $arg.');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="RouteMethod.get">
+<button class="show-code">Code</button>
+factory <strong>RouteMethod.get</strong>() <a class="anchor-link" href="#RouteMethod.get"
+              title="Permalink to RouteMethod.RouteMethod.get">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory RouteMethod.get() {
+ return new RouteMethod(['GET']);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="RouteMethod.post">
+<button class="show-code">Code</button>
+factory <strong>RouteMethod.post</strong>() <a class="anchor-link" href="#RouteMethod.post"
+              title="Permalink to RouteMethod.RouteMethod.post">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory RouteMethod.post() {
+ return new RouteMethod(['POST']);
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="methods">
+<button class="show-code">Code</button>
+Set&lt;String&gt;         <strong>methods</strong> <a class="anchor-link"
+            href="#methods"
+            title="Permalink to RouteMethod.methods">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Set&lt;String&gt; methods;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="match">
+<button class="show-code">Code</button>
+Map&lt;String, String&gt; <strong>match</strong>(HttpRequest request) <a class="anchor-link" href="#match"
+              title="Permalink to RouteMethod.match">#</a></h4>
+<div class="doc">
+<pre class="source">
+Map&lt;String, String&gt; match(HttpRequest request) {
+ return methods.contains(request.method) ? {'__method__': request.method}
+                                         : {'__error__' : 405};
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-12-28 14:32:04.996</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

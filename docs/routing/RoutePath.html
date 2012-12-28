@@ -1,0 +1,295 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>RoutePath class / routing Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="routing" data-type="RoutePath">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../routing.html">routing</a> &rsaquo; <a href="../routing/RoutePath.html">RoutePath</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>RoutePath</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>The path component of a <a class="crossref" href="../routing/Route.html">Route</a>.</p>
+<pre class="source">
+class RoutePath implements RouteComponent {
+
+ // The list of segments in this route.
+ final List&lt;RouteSegment&gt; segments;
+
+ /**
+  * Creates a new path from a list of [segments].
+  */
+ RoutePath(this.segments);
+
+ /**
+  * Creates a new [RoutePath] from a string path.
+  */
+ factory RoutePath.fromPath(String path) {
+   return new RoutePath(parse(path));
+ }
+
+ /**
+  * Parses a path into a list of segments.
+  */
+ static List&lt;RouteSegment&gt; parse(String path) {
+   final segs = &lt;RouteSegment&gt;[];
+   for (String value in split(path)) {
+     segs.add(parseSegment(value));
+   }
+   return segs;
+ }
+
+ /*
+  * Splits a path into its components.
+  */
+ static List&lt;String&gt; split(String path) {
+   if (path.startsWith('/')) {
+     path = path.substring(1, path.length);
+   }
+   return path.split('/');
+ }
+
+ /*
+  * Parses a path component into the correct type of [RouteSegment].
+  */
+ static RouteSegment parseSegment(String value) {
+   if (value.startsWith('&lt;')) {
+     return new RouteVariableSegment.fromSegment(value);
+   }
+   else {
+     return new RouteConstantSegment.fromSegment(value);
+   }
+ }
+
+ /**
+  * Builds a path from given [args].
+  */
+ String build([Map&lt;String, dynamic&gt; args]) {
+   if (!?args) {
+     args = &lt;dynamic&gt;{};
+   }
+   var builtSegments = &lt;String&gt;[''];
+   for (RouteSegment segment in segments) {
+     builtSegments.add(segment.build(args));
+   }
+   return Strings.join(builtSegments, '/');
+ }
+
+ /**
+  * Matches the [RoutePath] against a given [path].
+  *
+  * On success, this returns arguments for the route. On failure returns
+  * [null].
+  */
+ Map&lt;String, dynamic&gt; match(HttpRequest request) {
+   var path = request.path;
+   var pathsegments = split(path);
+   if (pathsegments.length != segments.length) {
+     return {'__error__' : 404};
+   }
+   var parts = zip(pathsegments, segments);
+   var args = &lt;dynamic&gt;{};
+   for (Tuple&lt;String, RouteSegment&gt; part in parts) {
+     var arg = part.snd.parse(part.fst);
+     if (arg != null) {
+       if (part.snd is RouteVariableSegment) {
+         args[part.snd.key] = arg;
+       }
+     }
+     else {
+       return {'__error__': 404};
+     }
+   }
+   return args;
+ }
+}
+</pre>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../routing/RouteComponent.html">RouteComponent</a></span></p>
+<div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="parse">
+<button class="show-code">Code</button>
+List&lt;<a href="../routing/RouteSegment.html">RouteSegment</a>&gt; <strong>parse</strong>(String path) <a class="anchor-link" href="#parse"
+              title="Permalink to RoutePath.parse">#</a></h4>
+<div class="doc">
+<p>Parses a path into a list of segments.</p>
+<pre class="source">
+static List&lt;RouteSegment&gt; parse(String path) {
+ final segs = &lt;RouteSegment&gt;[];
+ for (String value in split(path)) {
+   segs.add(parseSegment(value));
+ }
+ return segs;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="split">
+<button class="show-code">Code</button>
+List&lt;String&gt; <strong>split</strong>(String path) <a class="anchor-link" href="#split"
+              title="Permalink to RoutePath.split">#</a></h4>
+<div class="doc">
+<pre class="source">
+static List&lt;String&gt; split(String path) {
+ if (path.startsWith('/')) {
+   path = path.substring(1, path.length);
+ }
+ return path.split('/');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="parseSegment">
+<button class="show-code">Code</button>
+<a href="../routing/RouteSegment.html">RouteSegment</a> <strong>parseSegment</strong>(String value) <a class="anchor-link" href="#parseSegment"
+              title="Permalink to RoutePath.parseSegment">#</a></h4>
+<div class="doc">
+<pre class="source">
+static RouteSegment parseSegment(String value) {
+ if (value.startsWith('&lt;')) {
+   return new RouteVariableSegment.fromSegment(value);
+ }
+ else {
+   return new RouteConstantSegment.fromSegment(value);
+ }
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="RoutePath">
+<button class="show-code">Code</button>
+new <strong>RoutePath</strong>(List&lt;<a href="../routing/RouteSegment.html">RouteSegment</a>&gt; segments) <a class="anchor-link" href="#RoutePath"
+              title="Permalink to RoutePath.RoutePath">#</a></h4>
+<div class="doc">
+<p>Creates a new path from a list of 
+<span class="param">segments</span>.</p>
+<pre class="source">
+RoutePath(this.segments);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="RoutePath.fromPath">
+<button class="show-code">Code</button>
+factory <strong>RoutePath.fromPath</strong>(String path) <a class="anchor-link" href="#RoutePath.fromPath"
+              title="Permalink to RoutePath.RoutePath.fromPath">#</a></h4>
+<div class="doc">
+<p>Creates a new <a class="crossref" href="../routing/RoutePath.html#RoutePath">RoutePath</a> from a string path.</p>
+<pre class="source">
+factory RoutePath.fromPath(String path) {
+ return new RoutePath(parse(path));
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="segments">
+<button class="show-code">Code</button>
+final List&lt;<a href="../routing/RouteSegment.html">RouteSegment</a>&gt;         <strong>segments</strong> <a class="anchor-link"
+            href="#segments"
+            title="Permalink to RoutePath.segments">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final List&lt;RouteSegment&gt; segments;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="build">
+<button class="show-code">Code</button>
+String <strong>build</strong>([Map&lt;String, Dynamic&gt; args]) <a class="anchor-link" href="#build"
+              title="Permalink to RoutePath.build">#</a></h4>
+<div class="doc">
+<p>Builds a path from given 
+<span class="param">args</span>.</p>
+<pre class="source">
+String build([Map&lt;String, dynamic&gt; args]) {
+ if (!?args) {
+   args = &lt;dynamic&gt;{};
+ }
+ var builtSegments = &lt;String&gt;[''];
+ for (RouteSegment segment in segments) {
+   builtSegments.add(segment.build(args));
+ }
+ return Strings.join(builtSegments, '/');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="match">
+<button class="show-code">Code</button>
+Map&lt;String, Dynamic&gt; <strong>match</strong>(HttpRequest request) <a class="anchor-link" href="#match"
+              title="Permalink to RoutePath.match">#</a></h4>
+<div class="doc">
+<p>Matches the <a class="crossref" href="../routing/RoutePath.html#RoutePath">RoutePath</a> against a given <code>path</code>.</p>
+<p>On success, this returns arguments for the route. On failure returns
+<code>null</code>.</p>
+<pre class="source">
+Map&lt;String, dynamic&gt; match(HttpRequest request) {
+ var path = request.path;
+ var pathsegments = split(path);
+ if (pathsegments.length != segments.length) {
+   return {'__error__' : 404};
+ }
+ var parts = zip(pathsegments, segments);
+ var args = &lt;dynamic&gt;{};
+ for (Tuple&lt;String, RouteSegment&gt; part in parts) {
+   var arg = part.snd.parse(part.fst);
+   if (arg != null) {
+     if (part.snd is RouteVariableSegment) {
+       args[part.snd.key] = arg;
+     }
+   }
+   else {
+     return {'__error__': 404};
+   }
+ }
+ return args;
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-12-28 14:32:04.987</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

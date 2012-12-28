@@ -1,0 +1,169 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>RouteConstantSegment class / routing Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="routing" data-type="RouteConstantSegment">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../routing.html">routing</a> &rsaquo; <a href="../routing/RouteConstantSegment.html">RouteConstantSegment</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>RouteConstantSegment</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>A constant route path segment.</p>
+<p>Constant segments are simply matched as a string, and contain no variables.</p>
+<pre class="source">
+class RouteConstantSegment implements RouteSegment {
+
+ // Key of segment.
+ final String key;
+
+ /**
+  * Creates a new named segment.
+  */
+ RouteConstantSegment(this.key);
+
+ /**
+  * Creates a new named segment.
+  */
+ RouteConstantSegment.fromSegment(this.key);
+
+ /**
+  * Parses a string component.
+  *
+  * For [RouteConstantSegment]s this returns whether the component matches
+  * the given component.
+  */
+ dynamic parse(String value) {
+   if (value == this.key) {
+     return this.key;
+   }
+   else {
+     return null;
+   }
+ }
+
+ /**
+  * Builds a path component from this segment.
+  *
+  * For constant segments, this is the name of the segment.
+  */
+ String build(Map&lt;String, dynamic&gt; args) {
+   return key;
+ }
+
+}
+</pre>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../routing/RouteSegment.html">RouteSegment</a></span></p>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="RouteConstantSegment">
+<button class="show-code">Code</button>
+new <strong>RouteConstantSegment</strong>(String key) <a class="anchor-link" href="#RouteConstantSegment"
+              title="Permalink to RouteConstantSegment.RouteConstantSegment">#</a></h4>
+<div class="doc">
+<p>Creates a new named segment.</p>
+<pre class="source">
+RouteConstantSegment(this.key);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="RouteConstantSegment.fromSegment">
+<button class="show-code">Code</button>
+new <strong>RouteConstantSegment.fromSegment</strong>(String key) <a class="anchor-link" href="#RouteConstantSegment.fromSegment"
+              title="Permalink to RouteConstantSegment.RouteConstantSegment.fromSegment">#</a></h4>
+<div class="doc">
+<p>Creates a new named segment.</p>
+<pre class="source">
+RouteConstantSegment.fromSegment(this.key);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="key">
+<button class="show-code">Code</button>
+final String         <strong>key</strong> <a class="anchor-link"
+            href="#key"
+            title="Permalink to RouteConstantSegment.key">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final String key;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="build">
+<button class="show-code">Code</button>
+String <strong>build</strong>(Map&lt;String, Dynamic&gt; args) <a class="anchor-link" href="#build"
+              title="Permalink to RouteConstantSegment.build">#</a></h4>
+<div class="doc">
+<p>Builds a path component from this segment.</p>
+<p>For constant segments, this is the name of the segment.</p>
+<pre class="source">
+String build(Map&lt;String, dynamic&gt; args) {
+ return key;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="parse">
+<button class="show-code">Code</button>
+<strong>parse</strong>(String value) <a class="anchor-link" href="#parse"
+              title="Permalink to RouteConstantSegment.parse">#</a></h4>
+<div class="doc">
+<p>Parses a string component.</p>
+<p>For <a class="crossref" href="../routing/RouteConstantSegment.html#RouteConstantSegment">RouteConstantSegment</a>s this returns whether the component matches
+the given component.</p>
+<pre class="source">
+dynamic parse(String value) {
+ if (value == this.key) {
+   return this.key;
+ }
+ else {
+   return null;
+ }
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-12-28 14:32:04.993</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

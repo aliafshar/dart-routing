@@ -1,0 +1,187 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>RouteMatch class / routing Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="routing" data-type="RouteMatch">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../routing.html">routing</a> &rsaquo; <a href="../routing/RouteMatch.html">RouteMatch</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>RouteMatch</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>A matched route.</p>
+<p>Contains the route and any arguments generated during match.</p>
+<pre class="source">
+class RouteMatch {
+ final String name;
+ final Route route;
+ final Map&lt;String, dynamic&gt; args;
+ final String method = 'GET';
+ final String protocol = 'http';
+
+ RouteMatch(this.route, this.name, this.args);
+
+ int get error =&gt; args['__error__'];
+ bool get isError =&gt; error != null;
+ Path get filepath =&gt; args['__filepath__'];
+ bool get isFile =&gt; filepath != null;
+}
+</pre>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="RouteMatch">
+<button class="show-code">Code</button>
+new <strong>RouteMatch</strong>(<a href="../routing/Route.html">Route</a> route, String name, Map&lt;String, Dynamic&gt; args) <a class="anchor-link" href="#RouteMatch"
+              title="Permalink to RouteMatch.RouteMatch">#</a></h4>
+<div class="doc">
+<pre class="source">
+RouteMatch(this.route, this.name, this.args);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="args">
+<button class="show-code">Code</button>
+final Map&lt;String, Dynamic&gt;         <strong>args</strong> <a class="anchor-link"
+            href="#args"
+            title="Permalink to RouteMatch.args">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final Map&lt;String, dynamic&gt; args;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="error">
+<button class="show-code">Code</button>
+final int         <strong>error</strong> <a class="anchor-link"
+            href="#error"
+            title="Permalink to RouteMatch.error">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+int get error =&gt; args['__error__'];
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="filepath">
+<button class="show-code">Code</button>
+final Path         <strong>filepath</strong> <a class="anchor-link"
+            href="#filepath"
+            title="Permalink to RouteMatch.filepath">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Path get filepath =&gt; args['__filepath__'];
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isError">
+<button class="show-code">Code</button>
+final bool         <strong>isError</strong> <a class="anchor-link"
+            href="#isError"
+            title="Permalink to RouteMatch.isError">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool get isError =&gt; error != null;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isFile">
+<button class="show-code">Code</button>
+final bool         <strong>isFile</strong> <a class="anchor-link"
+            href="#isFile"
+            title="Permalink to RouteMatch.isFile">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool get isFile =&gt; filepath != null;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="method">
+<button class="show-code">Code</button>
+final String         <strong>method</strong> <a class="anchor-link"
+            href="#method"
+            title="Permalink to RouteMatch.method">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final String method = 'GET';
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="name">
+<button class="show-code">Code</button>
+final String         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to RouteMatch.name">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final String name;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="protocol">
+<button class="show-code">Code</button>
+final String         <strong>protocol</strong> <a class="anchor-link"
+            href="#protocol"
+            title="Permalink to RouteMatch.protocol">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final String protocol = 'http';
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="route">
+<button class="show-code">Code</button>
+final <a href="../routing/Route.html">Route</a>         <strong>route</strong> <a class="anchor-link"
+            href="#route"
+            title="Permalink to RouteMatch.route">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final Route route;
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-12-28 14:32:04.979</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

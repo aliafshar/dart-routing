@@ -1,0 +1,98 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>RouteSegment abstract class / routing Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="routing" data-type="RouteSegment">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../routing.html">routing</a> &rsaquo; <a href="../routing/RouteSegment.html">RouteSegment</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>RouteSegment</strong>
+          abstract class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>A segment of a <a class="crossref" href="../routing/RoutePath.html">RoutePath</a>.</p>
+<pre class="source">
+abstract class RouteSegment {
+
+ // Key of segment.
+ String key;
+
+ /**
+  * Parses a path component into a segment.
+  */
+ dynamic parse(String value);
+
+ /**
+  * Builds a path component from a segment.
+  */
+ String build(Map&lt;String, dynamic&gt; args);
+}
+</pre>
+</div>
+<h3>Subclasses</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../routing/RouteConstantSegment.html">RouteConstantSegment</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../routing/RouteVariableSegment.html">RouteVariableSegment</a></span></p>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="key">
+<button class="show-code">Code</button>
+String         <strong>key</strong> <a class="anchor-link"
+            href="#key"
+            title="Permalink to RouteSegment.key">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+String key;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="build">
+abstract String <strong>build</strong>(Map&lt;String, Dynamic&gt; args) <a class="anchor-link" href="#build"
+              title="Permalink to RouteSegment.build">#</a></h4>
+<div class="doc">
+<p>Builds a path component from a segment.</p>
+</div>
+</div>
+<div class="method"><h4 id="parse">
+abstract <strong>parse</strong>(String value) <a class="anchor-link" href="#parse"
+              title="Permalink to RouteSegment.parse">#</a></h4>
+<div class="doc">
+<p>Parses a path component into a segment.</p>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-12-28 14:32:04.994</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

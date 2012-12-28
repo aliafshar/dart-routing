@@ -1,0 +1,231 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>RouteMap class / routing Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="routing" data-type="RouteMap">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../routing.html">routing</a> &rsaquo; <a href="../routing/RouteMap.html">RouteMap</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>RouteMap</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>A map of routes.</p>
+<pre class="source">
+class RouteMap {
+
+ // The list of routes to track the order.
+ List&lt;Route&gt; routeList;
+
+ // The map of routes by name.
+ Map&lt;String, Route&gt; routes;
+
+ // The map of views by name.
+ Map&lt;String, Function&gt; views;
+
+ /**
+  * Creates a new route map.
+  */
+ RouteMap() {
+   views = &lt;Function&gt;{};
+   routes = &lt;Route&gt;{};
+   routeList = &lt;Route&gt;[];
+ }
+
+ /**
+  * Adds a route to this map.
+  */
+ add(Route route) {
+   routes[route.name] = route;
+   routeList.add(route);
+ }
+
+ /**
+  * Matches and returns the first matched route, or null if there is no match.
+  */
+ RouteMatch match(HttpRequest request) {
+   var lastError;
+   for (var route in routeList) {
+     var m = route.match(request);
+     if (!m.isError) {
+       return m;
+     }
+     else {
+       lastError = m;
+     }
+   }
+   return lastError;
+ }
+
+ /**
+  * Finds a view for a named route.
+  */
+ Function findView(RouteMatch m) {
+   var name;
+   if (m.isError) {
+     name = m.error.toString();
+   }
+   else if (m.isFile) {
+     name = '__static__';
+   }
+   else {
+     name = m.name;
+   }
+   return views[name];
+ }
+
+}
+</pre>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="RouteMap">
+<button class="show-code">Code</button>
+new <strong>RouteMap</strong>() <a class="anchor-link" href="#RouteMap"
+              title="Permalink to RouteMap.RouteMap">#</a></h4>
+<div class="doc">
+<p>Creates a new route map.</p>
+<pre class="source">
+RouteMap() {
+ views = &lt;Function&gt;{};
+ routes = &lt;Route&gt;{};
+ routeList = &lt;Route&gt;[];
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="routeList">
+<button class="show-code">Code</button>
+List&lt;<a href="../routing/Route.html">Route</a>&gt;         <strong>routeList</strong> <a class="anchor-link"
+            href="#routeList"
+            title="Permalink to RouteMap.routeList">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List&lt;Route&gt; routeList;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="routes">
+<button class="show-code">Code</button>
+Map&lt;String, <a href="../routing/Route.html">Route</a>&gt;         <strong>routes</strong> <a class="anchor-link"
+            href="#routes"
+            title="Permalink to RouteMap.routes">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Map&lt;String, Route&gt; routes;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="views">
+<button class="show-code">Code</button>
+Map&lt;String, Function&gt;         <strong>views</strong> <a class="anchor-link"
+            href="#views"
+            title="Permalink to RouteMap.views">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Map&lt;String, Function&gt; views;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="add">
+<button class="show-code">Code</button>
+<strong>add</strong>(<a href="../routing/Route.html">Route</a> route) <a class="anchor-link" href="#add"
+              title="Permalink to RouteMap.add">#</a></h4>
+<div class="doc">
+<p>Adds a route to this map.</p>
+<pre class="source">
+add(Route route) {
+ routes[route.name] = route;
+ routeList.add(route);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="findView">
+<button class="show-code">Code</button>
+Function <strong>findView</strong>(<a href="../routing/RouteMatch.html">RouteMatch</a> m) <a class="anchor-link" href="#findView"
+              title="Permalink to RouteMap.findView">#</a></h4>
+<div class="doc">
+<p>Finds a view for a named route.</p>
+<pre class="source">
+Function findView(RouteMatch m) {
+ var name;
+ if (m.isError) {
+   name = m.error.toString();
+ }
+ else if (m.isFile) {
+   name = '__static__';
+ }
+ else {
+   name = m.name;
+ }
+ return views[name];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="match">
+<button class="show-code">Code</button>
+<a href="../routing/RouteMatch.html">RouteMatch</a> <strong>match</strong>(HttpRequest request) <a class="anchor-link" href="#match"
+              title="Permalink to RouteMap.match">#</a></h4>
+<div class="doc">
+<p>Matches and returns the first matched route, or null if there is no match.</p>
+<pre class="source">
+RouteMatch match(HttpRequest request) {
+ var lastError;
+ for (var route in routeList) {
+   var m = route.match(request);
+   if (!m.isError) {
+     return m;
+   }
+   else {
+     lastError = m;
+   }
+ }
+ return lastError;
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-12-28 14:32:04.976</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        
