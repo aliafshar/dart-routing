@@ -1,3 +1,5 @@
+// Copyright (c) 2012, Google Inc
+// Author: afshar@google.com (Ali Afshar)
 
 part of routing;
 
@@ -18,4 +20,5 @@ class RouteStatic implements RouteComponent {
       return {'__error__': 404};
     }
   }
+
 }

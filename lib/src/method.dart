@@ -1,3 +1,5 @@
+// Copyright (c) 2012, Google Inc
+// Author: afshar@google.com (Ali Afshar)
 
 part of routing;
 
@@ -34,6 +36,5 @@ class RouteMethod implements RouteComponent {
     return methods.contains(request.method) ? {'__method__': request.method}
                                             : {'__error__' : 405};
   }
-
 
 }

@@ -1,3 +1,5 @@
+// Copyright (c) 2012, Google Inc
+// Author: afshar@google.com (Ali Afshar)
 
 part of routing;
 
@@ -6,8 +8,4 @@ part of routing;
  */
 abstract class RouteComponent {
   Map <String, dynamic> match(HttpRequest request);
-}
-
-class Interfaces {
-
 }

@@ -1,3 +1,5 @@
+// Copyright (c) 2012, Google Inc
+// Author: afshar@google.com (Ali Afshar)
 
 library routing;
 

@@ -1,5 +1,7 @@
-part of routing;
+// Copyright (c) 2012, Google Inc
+// Author: afshar@google.com (Ali Afshar)
 
+part of routing;
 
 /**
  * The error that is thrown when a route cannot be parsed.
