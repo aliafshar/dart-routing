@@ -1819,15 +1819,6 @@
           "refId": "Object"
         },
         "kind": "class",
-        "name": "Interfaces",
-        "id": "Interfaces"
-      },
-      {
-        "superclass": {
-          "name": "Object",
-          "refId": "Object"
-        },
-        "kind": "class",
         "comment": "\nA matchable component of a request, such as its path or method.\n\n",
         "name": "RouteComponent",
         "children": [
