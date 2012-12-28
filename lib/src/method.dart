@@ -36,5 +36,4 @@ class RouteMethod implements RouteComponent {
     return methods.contains(request.method) ? {'__method__': request.method}
                                             : {'__error__' : 405};
   }
-
 }

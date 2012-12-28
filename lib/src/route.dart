@@ -125,5 +125,4 @@ class RouteMap {
     }
     return views[name];
   }
-
 }

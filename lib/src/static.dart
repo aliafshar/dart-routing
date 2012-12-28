@@ -20,5 +20,4 @@ class RouteStatic implements RouteComponent {
       return {'__error__': 404};
     }
   }
-
 }

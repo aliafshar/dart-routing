@@ -249,5 +249,4 @@ class RoutePath implements RouteComponent {
     }
     return args;
   }
-
 }
