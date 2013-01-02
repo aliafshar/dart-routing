@@ -232,7 +232,7 @@ class RoutePath implements RouteComponent {
     var path = request.path;
     var pathsegments = split(path);
     if (pathsegments.length != segments.length) {
-      return {'__error__' : 404};
+      return null;
     }
     var parts = zip(pathsegments, segments);
     var args = <dynamic>{};
@@ -244,7 +244,7 @@ class RoutePath implements RouteComponent {
         }
       }
       else {
-        return {'__error__': 404};
+        return null;
       }
     }
     return args;
