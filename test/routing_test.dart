@@ -190,4 +190,16 @@ void main() {
 
 
   });
+
+  group('Route', () {
+
+    test('Path match', () {
+
+      var route = new Route('index', path: new RoutePath.fromPath('/'));
+      route.match();
+
+    });
+
+
+  });
 }
