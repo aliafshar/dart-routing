@@ -31,7 +31,12 @@ class Route {
     for (var matcher in matchers) {
       if (matcher != null) {
         var args = matcher.match(request);
-        args.forEach((var k, var v) => matchArgs[k] = v);
+        if (args != null) {
+          args.forEach((var k, var v) => matchArgs[k] = v);
+        }
+        else {
+          return null;
+        }
       }
     }
     var match = new RouteMatch(this, name, matchArgs);
@@ -96,17 +101,12 @@ class RouteMap {
    * Matches and returns the first matched route, or null if there is no match.
    */
   RouteMatch match(HttpRequest request) {
-    var lastError;
     for (var route in routeList) {
       var m = route.match(request);
-      if (!m.isError) {
+      if (m != null) {
         return m;
       }
-      else {
-        lastError = m;
-      }
     }
-    return lastError;
   }
 
   /**
