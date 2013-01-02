@@ -102,11 +102,14 @@ class RouteMap {
    */
   RouteMatch match(HttpRequest request) {
     for (var route in routeList) {
+      logFine('Trying to match ${route.name}');
       var m = route.match(request);
       if (m != null) {
+        logFine('Success matching ${route.name}.');
         return m;
       }
     }
+    logFine('No match');
   }
 
   /**

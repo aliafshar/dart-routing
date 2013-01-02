@@ -231,7 +231,6 @@ class RoutePath implements RouteComponent {
   Map<String, dynamic> match(HttpRequest request) {
     var path = request.path;
     var pathsegments = split(path);
-    print(path);
     if (pathsegments.length != segments.length) {
       return null;
     }
