@@ -14,10 +14,7 @@ class RouteStatic implements RouteComponent {
     if (request.path.startsWith(this.prefix)) {
       var filename = request.path.substring(this.prefix.length);
       var filepath = path.join(new Path.fromNative(filename));
-      return {'__filepath__': filepath};
-    }
-    else {
-      return {'__error__': 404};
+      return {'filepath': filepath};
     }
   }
 }
