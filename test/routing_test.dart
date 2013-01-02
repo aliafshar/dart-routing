@@ -1,6 +1,7 @@
 
 import "package:unittest/unittest.dart";
 import "package:routing/routing.dart";
+import 'package:httpstub/httpstub.dart';
 
 void main() {
 
@@ -194,12 +195,64 @@ void main() {
   group('Route', () {
 
     test('Path match', () {
-
+      var req = new FakeHttpRequest();
+      req.path = '/';
       var route = new Route('index', path: new RoutePath.fromPath('/'));
-      route.match();
-
+      expect(route.match(req).name, equals('index'));
     });
 
+    test('Path no match', () {
+      var req = new FakeHttpRequest();
+      req.path = '/moo';
+      var route = new Route('index', path: new RoutePath.fromPath('/'));
+      expect(route.match(req), equals(null));
+    });
 
+  });
+
+  group('RouteMap', () {
+
+    test('Path match', () {
+      var req = new FakeHttpRequest();
+      req.path = '/';
+      var route = new Route('index', path: new RoutePath.fromPath('/'));
+      var map = new RouteMap();
+      map.add(route);
+      expect(map.match(req).args, equals({}));
+    });
+
+    test('Path match args', () {
+      var req = new FakeHttpRequest();
+      req.path = '/22';
+      var route = new Route('index', path: new RoutePath.fromPath('/<int:blogid>'));
+      var map = new RouteMap();
+      map.add(route);
+      expect(map.match(req).args, equals({'blogid': 22}));
+    });
+
+    test('Path match many routes', () {
+      var route = new Route('index', path: new RoutePath.fromPath('/<int:blogid>'));
+      var route2 = new Route('index', path: new RoutePath.fromPath('/'));
+      var map = new RouteMap();
+      map.add(route);
+      map.add(route2);
+      var req = new FakeHttpRequest();
+      req.path = '/22';
+      expect(map.match(req).args, equals({'blogid': 22}));
+      var req2 = new FakeHttpRequest();
+      req.path = '/';
+      expect(map.match(req).args, equals({}));
+    });
+
+    test('Path match no routes', () {
+      var route = new Route('index', path: new RoutePath.fromPath('/<int:blogid>'));
+      var route2 = new Route('index', path: new RoutePath.fromPath('/'));
+      var map = new RouteMap();
+      map.add(route);
+      map.add(route2);
+      var req = new FakeHttpRequest();
+      req.path = '/cake';
+      expect(map.match(req), equals(null));
+    });
   });
 }

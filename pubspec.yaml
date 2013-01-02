@@ -8,3 +8,5 @@ homepage:     https://github.com/aliafshar/dart-routing
 
 dependencies:
   unittest: any
+  httpstub:
+    git: git://github.com/aliafshar/dart-httpstub.git
