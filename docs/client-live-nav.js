@@ -3813,7 +3813,7 @@ $$.AbstractScanner = {"":"Object;",
   } else
     isDynamicBuiltIn = false;
   if (typeof next !== 'number')
-    return this.tokenizeIdentifier$3$bailout(2, start, allowDollar, next, isDynamicBuiltIn);
+    return this.tokenizeIdentifier$3$bailout(2, start, allowDollar, isDynamicBuiltIn, next);
   for (isAscii = true; true; isDynamicBuiltIn = false) {
     if (!($.leB(97, next) && $.leB(next, 122)))
       if (!($.leB(65, next) && $.leB(next, 90)))
@@ -3864,8 +3864,8 @@ $$.AbstractScanner = {"":"Object;",
       next = env0;
       break;
     case 2:
-      isDynamicBuiltIn = env3;
-      next = env2;
+      next = env3;
+      isDynamicBuiltIn = env2;
       allowDollar = env1;
       start = env0;
       break;
@@ -4951,6 +4951,101 @@ $$.BoundClosure0 = {"":"Closure;self,target", call$1: function(p0) {
   return this.self[this.target](p0);
 }
 };
+$.KeywordToken$ = function(value, charOffset) {
+  return new $.KeywordToken(value, value.get$info(), charOffset, null);
+};
+
+$.KeywordState_KEYWORD_STATE = function() {
+  var strings, t1, i;
+  if ($.KeywordState__KEYWORD_STATE == null) {
+    strings = $.List_List(52);
+    for (t1 = $.CONSTANT77.length, i = 0; i < 52; ++i) {
+      if (i >= t1)
+        throw $.ioore(i);
+      strings[i] = $.CONSTANT77[i].get$syntax();
+    }
+    $.CONSTANT1.sort$1(strings, new $.KeywordState_KEYWORD_STATE_anon());
+    $.KeywordState__KEYWORD_STATE = $.KeywordState_computeKeywordStateTable(0, strings, 0, 52);
+  }
+  return $.KeywordState__KEYWORD_STATE;
+};
+
+$.KeywordState_computeKeywordStateTable = function(start, strings, offset, length$) {
+  var result, t1, t2, i, chunk, chunkStart, isLeaf, t3, c, t4;
+  result = $.List_List(26);
+  for (t1 = start + 1, t2 = strings.length, i = offset, chunk = 0, chunkStart = -1, isLeaf = false; t3 = offset + length$, i < t3; ++i) {
+    if (i < 0)
+      throw $.ioore(i);
+    t3 = strings[i];
+    t3 = $.getInterceptor$JSStringJSArray(t3).get$length(t3);
+    if (typeof t3 !== 'number')
+      return $.KeywordState_computeKeywordStateTable$bailout(1, start, strings, offset, length$, t3, result, t1, i, chunk, chunkStart, isLeaf, t2);
+    if (t3 === start)
+      isLeaf = true;
+    t3 = strings[i];
+    t3 = $.getInterceptor$JSStringJSArray(t3).get$length(t3);
+    if (typeof t3 !== 'number')
+      return $.KeywordState_computeKeywordStateTable$bailout(2, start, strings, offset, length$, result, isLeaf, t1, t3, i, chunk, chunkStart, t2);
+    if (t3 > start) {
+      t3 = strings[i];
+      c = $.getInterceptor$JSString(t3).charCodeAt$1(t3, start);
+      if (c !== (c | 0))
+        return $.KeywordState_computeKeywordStateTable$bailout(3, start, strings, offset, length$, result, isLeaf, t1, i, chunk, chunkStart, c, t2);
+      if (chunk !== c) {
+        if (chunkStart !== -1) {
+          t3 = chunk - 97;
+          t4 = $.KeywordState_computeKeywordStateTable(t1, strings, chunkStart, i - chunkStart);
+          if (t3 < 0 || t3 >= 26)
+            throw $.ioore(t3);
+          result[t3] = t4;
+        }
+        chunkStart = i;
+        chunk = c;
+      }
+    }
+  }
+  if (chunkStart !== -1) {
+    t4 = chunk - 97;
+    t1 = $.KeywordState_computeKeywordStateTable(t1, strings, chunkStart, t3 - chunkStart);
+    if (t4 < 0 || t4 >= 26)
+      throw $.ioore(t4);
+    result[t4] = t1;
+  } else {
+    if (offset < 0 || offset >= t2)
+      throw $.ioore(offset);
+    return $.LeafKeywordState$(strings[offset]);
+  }
+  if (isLeaf) {
+    if (offset < 0 || offset >= t2)
+      throw $.ioore(offset);
+    return $.ArrayKeywordState$(result, strings[offset]);
+  } else
+    return $.ArrayKeywordState$(result, null);
+};
+
+$._ElementAttributeMap$ = function(element) {
+  return new $._ElementAttributeMap(element);
+};
+
+$.LeafKeywordState$ = function(syntax) {
+  return new $.LeafKeywordState($.index($.Keyword_keywords(), syntax));
+};
+
+$.ArrayKeywordState$ = function(table, syntax) {
+  var t1 = syntax == null ? null : $.index($.Keyword_keywords(), syntax);
+  return new $.ArrayKeywordState(table, t1);
+};
+
+$.LinkedHashMap_LinkedHashMap = function() {
+  return $._LinkedHashMapImpl$();
+};
+
+$._LinkedHashMapImpl$ = function() {
+  var t1 = new $._LinkedHashMapImpl(null, null);
+  t1._LinkedHashMapImpl$0();
+  return t1;
+};
+
 $.DoubleLinkedQueue$ = function() {
   var t1 = new $.DoubleLinkedQueue(null);
   t1.DoubleLinkedQueue$0();
@@ -5354,13 +5449,13 @@ $.Result$ = function(match, kind, url, args, library, noargs, prefix, type) {
   return new $.Result(prefix, match, library, type, t1, kind, url, noargs, null);
 };
 
-$._ChildrenElementList$_wrap = function(element) {
-  return new $._ChildrenElementList(element, element.get$$$dom_children());
-};
-
 $.setRuntimeTypeInfo = function(target, typeInfo) {
   if (!(target == null))
     target.builtin$typeInfo = typeInfo;
+};
+
+$._ChildrenElementList$_wrap = function(element) {
+  return new $._ChildrenElementList(element, element.get$$$dom_children());
 };
 
 $.throwCyclicInit = function(staticName) {
@@ -5465,24 +5560,6 @@ $.typeNameInOpera = function(obj) {
   return name$;
 };
 
-$.constructorNameFallback = function(object) {
-  var constructor$, name$, t1, string;
-  if (object == null)
-    return "Null";
-  constructor$ = object.constructor;
-  if (typeof(constructor$) === "function") {
-    name$ = constructor$.name;
-    if (typeof name$ === 'string')
-      t1 = !(name$ === "") && !(name$ === "Object") && !(name$ === "Function.prototype");
-    else
-      t1 = false;
-    if (t1)
-      return name$;
-  }
-  string = Object.prototype.toString.call(object);
-  return string.substring(8, string.length - 1);
-};
-
 $.typeNameInFirefox = function(obj) {
   var name$ = $.constructorNameFallback(obj);
   if (name$ === "Window")
@@ -5504,6 +5581,28 @@ $.typeNameInFirefox = function(obj) {
   if (name$ === "XMLDocument")
     return "Document";
   return name$;
+};
+
+$.constructorNameFallback = function(object) {
+  var constructor$, name$, t1, string;
+  if (object == null)
+    return "Null";
+  constructor$ = object.constructor;
+  if (typeof(constructor$) === "function") {
+    name$ = constructor$.name;
+    if (typeof name$ === 'string')
+      t1 = !(name$ === "") && !(name$ === "Object") && !(name$ === "Function.prototype");
+    else
+      t1 = false;
+    if (t1)
+      return name$;
+  }
+  string = Object.prototype.toString.call(object);
+  return string.substring(8, string.length - 1);
+};
+
+$.typeNameInChrome = function(obj) {
+  return $.typeNameInWebKitCommon(obj.constructor.name);
 };
 
 $.typeNameInIE = function(obj) {
@@ -5540,10 +5639,6 @@ $.typeNameInIE = function(obj) {
   if (name$ === "Position")
     return "Geoposition";
   return name$;
-};
-
-$.typeNameInChrome = function(obj) {
-  return $.typeNameInWebKitCommon(obj.constructor.name);
 };
 
 $.callHasOwnProperty = function(function$, object, property) {
@@ -5792,10 +5887,6 @@ $.stringJoinUnchecked = function(array, separator) {
   return array.join(separator);
 };
 
-$._ExceptionImplementation$ = function(message) {
-  return new $._ExceptionImplementation(message);
-};
-
 $.StringMatch$ = function(start, str, pattern) {
   return new $.StringMatch(start, str, pattern);
 };
@@ -5848,16 +5939,12 @@ $.Lists_getRange = function(a, start, length$, accumulator) {
   return accumulator;
 };
 
-$.StackOverflowError$ = function() {
-  return new $.StackOverflowError();
+$.RuntimeError$ = function(message) {
+  return new $.RuntimeError(message);
 };
 
 $._FrozenElementList$_wrap = function(_nodeList) {
   return new $._FrozenElementList(_nodeList);
-};
-
-$.RuntimeError$ = function(message) {
-  return new $.RuntimeError(message);
 };
 
 $._AllMatchesIterator$ = function(re, _str) {
@@ -5877,12 +5964,12 @@ $.LocalWindow__isDartLocation = function(thing, exception) {
 
 };
 
-$.double_parse = function(source) {
-  return $.Primitives_parseDouble(source);
-};
-
 $._AllMatchesIterable$ = function(_re, _str) {
   return new $._AllMatchesIterable(_re, _str);
+};
+
+$.double_parse = function(source) {
+  return $.Primitives_parseDouble(source);
 };
 
 $._MatchImplementation$ = function(pattern, str, start, end, _groups) {
@@ -5906,12 +5993,20 @@ $.FilteredElementList$ = function(node) {
   return new $.FilteredElementList(node, node.get$nodes());
 };
 
+$._ExceptionImplementation$ = function(message) {
+  return new $._ExceptionImplementation(message);
+};
+
 $.HttpRequestEvents$ = function(_ptr) {
   return new $.HttpRequestEvents(_ptr);
 };
 
 $.Events$ = function(_ptr) {
   return new $.Events(_ptr);
+};
+
+$.StackOverflowError$ = function() {
+  return new $.StackOverflowError();
 };
 
 $.main = function() {
@@ -6076,36 +6171,6 @@ $.matchAllMembersInType = function(results, typeText, memberText) {
   }
 };
 
-$.matchMembersInType = function(results, text, typeText, memberText) {
-  var searchText, typeSearchText, memberSearchText, t1, t2, libraryName, t3, typeName, typeMatch, t4, t5, constructorMatch, memberMatch;
-  searchText = $.SearchText$(text);
-  typeSearchText = $.SearchText$(typeText);
-  memberSearchText = $.SearchText$(memberText);
-  for (t1 = $.libraryList, t1 = $.getInterceptor$JSArray(t1).iterator$0(t1); t1.get$hasNext() === true;) {
-    t2 = t1.next$0();
-    libraryName = $.index(t2, "name");
-    if (t2.containsKey$1("types") === true)
-      for (t2 = $.index(t2, "types"), t2 = $.getInterceptor$JSArray(t2).iterator$0(t2); t2.get$hasNext() === true;) {
-        t3 = t2.next$0();
-        typeName = $.index(t3, "name");
-        typeMatch = $.obtainMatch(typeSearchText, typeName);
-        if (!(typeMatch == null))
-          if (t3.containsKey$1("members") === true)
-            for (t4 = $.index(t3, "members"), t4 = $.getInterceptor$JSArray(t4).iterator$0(t4); t4.get$hasNext() === true;) {
-              t5 = t4.next$0();
-              constructorMatch = $.obtainMatch(searchText, $.index(t5, "name"));
-              if (!(constructorMatch == null))
-                results.push($.Result$(constructorMatch, $.index(t5, "kind"), $.getTypeMemberUrl(libraryName, typeName, t5), null, libraryName, $.index(t5, "noparams"), null, null));
-              else {
-                memberMatch = $.obtainMatch(memberSearchText, $.index(t5, "name"));
-                if (!(memberMatch == null))
-                  results.push($.Result$(memberMatch, $.index(t5, "kind"), $.getTypeMemberUrl(libraryName, typeName, t5), $.index(t3, "args"), libraryName, $.index(t5, "noparams"), typeMatch, null));
-              }
-            }
-      }
-  }
-};
-
 $.matchLibrary = function(results, searchText, library) {
   var libraryName, libraryMatch, t1, t2;
   libraryName = $.index(library, "name");
@@ -6167,6 +6232,36 @@ $.matchTypeMembers = function(results, searchText, libraryName, type) {
       if (!(memberMatch == null))
         results.push($.Result$(memberMatch, $.index(t2, "kind"), $.getTypeMemberUrl(libraryName, typeName, t2), $.index(type, "args"), libraryName, $.index(t2, "noparams"), null, typeName));
     }
+  }
+};
+
+$.matchMembersInType = function(results, text, typeText, memberText) {
+  var searchText, typeSearchText, memberSearchText, t1, t2, libraryName, t3, typeName, typeMatch, t4, t5, constructorMatch, memberMatch;
+  searchText = $.SearchText$(text);
+  typeSearchText = $.SearchText$(typeText);
+  memberSearchText = $.SearchText$(memberText);
+  for (t1 = $.libraryList, t1 = $.getInterceptor$JSArray(t1).iterator$0(t1); t1.get$hasNext() === true;) {
+    t2 = t1.next$0();
+    libraryName = $.index(t2, "name");
+    if (t2.containsKey$1("types") === true)
+      for (t2 = $.index(t2, "types"), t2 = $.getInterceptor$JSArray(t2).iterator$0(t2); t2.get$hasNext() === true;) {
+        t3 = t2.next$0();
+        typeName = $.index(t3, "name");
+        typeMatch = $.obtainMatch(typeSearchText, typeName);
+        if (!(typeMatch == null))
+          if (t3.containsKey$1("members") === true)
+            for (t4 = $.index(t3, "members"), t4 = $.getInterceptor$JSArray(t4).iterator$0(t4); t4.get$hasNext() === true;) {
+              t5 = t4.next$0();
+              constructorMatch = $.obtainMatch(searchText, $.index(t5, "name"));
+              if (!(constructorMatch == null))
+                results.push($.Result$(constructorMatch, $.index(t5, "kind"), $.getTypeMemberUrl(libraryName, typeName, t5), null, libraryName, $.index(t5, "noparams"), null, null));
+              else {
+                memberMatch = $.obtainMatch(memberSearchText, $.index(t5, "name"));
+                if (!(memberMatch == null))
+                  results.push($.Result$(memberMatch, $.index(t5, "kind"), $.getTypeMemberUrl(libraryName, typeName, t5), $.index(t3, "args"), libraryName, $.index(t5, "noparams"), typeMatch, null));
+              }
+            }
+      }
   }
 };
 
@@ -6439,6 +6534,10 @@ $._Device_isFirefox = function() {
   return $.getInterceptor$JSString(t1).contains$2(t1, "Firefox", 0);
 };
 
+$.getTypeName = function(typeInfo) {
+  return typeInfo.containsKey$1("args") === true ? $.S($.index(typeInfo, "name")) + "&lt;" + $.S($.index(typeInfo, "name")) + "&gt;" : $.index(typeInfo, "name");
+};
+
 $.getLibraryMemberUrl = function(libraryName, memberInfo) {
   var t1, t2, t3;
   t1 = $.S($.prefix);
@@ -6455,10 +6554,6 @@ $.getTypeMemberUrl = function(libraryName, typeName, memberInfo) {
   t4 = $.getInterceptor$JSString(typeName).replaceAll$2(typeName, ":", "_");
   t5 = t3 + $.S($.getInterceptor$JSString(t4).replaceAll$2(t4, "/", "_")) + ".html#";
   return t5 + $.S(memberInfo.containsKey$1("link_name") === true ? $.index(memberInfo, "link_name") : $.index(memberInfo, "name"));
-};
-
-$.getTypeName = function(typeInfo) {
-  return typeInfo.containsKey$1("args") === true ? $.S($.index(typeInfo, "name")) + "&lt;" + $.S($.index(typeInfo, "name")) + "&gt;" : $.index(typeInfo, "name");
 };
 
 $.window = function() {
@@ -7371,18 +7466,18 @@ $._HashMapImpl__nextProbe = function(currentProbe, numberOfProbes, length$) {
   return $.and($.add(currentProbe, numberOfProbes), $.sub(length$, 1));
 };
 
-$.StringCodeIterator$substring = function(string, index, end) {
-  var t1 = new $.StringCodeIterator(string, index, end);
-  t1.StringCodeIterator$substring$3(string, index, end);
-  return t1;
-};
-
 $.HashMap_HashMap = function() {
   return $._HashMapImpl$();
 };
 
 $.StringCodeIterator$ = function(string) {
   return new $.StringCodeIterator(string, 0, $.getInterceptor$JSStringJSArray(string).get$length(string));
+};
+
+$.StringCodeIterator$substring = function(string, index, end) {
+  var t1 = new $.StringCodeIterator(string, index, end);
+  t1.StringCodeIterator$substring$3(string, index, end);
+  return t1;
 };
 
 $._HashSetIterator$ = function(set_) {
@@ -7392,10 +7487,10 @@ $._HashSetIterator$ = function(set_) {
 };
 
 $.classifySource = function(text) {
-  var html, token, t1, t2, whitespaceOffset, inString, whitespaceOffset0, kind, escapedText, stringClass;
+  var html, token, t1, t2, inString, whitespaceOffset, whitespaceOffset0, kind, escapedText, stringClass;
   html = $.StringBuffer_StringBuffer("");
   token = $.StringScanner$(text, true).tokenize$0();
-  for (t1 = $.getInterceptor$JSArray(html), t2 = $.getInterceptor$JSString(text), whitespaceOffset = 0, inString = false; !$.eqB(token.get$kind(), 0); whitespaceOffset = whitespaceOffset0) {
+  for (t1 = $.getInterceptor$JSArray(html), t2 = $.getInterceptor$JSString(text), inString = false, whitespaceOffset = 0; !$.eqB(token.get$kind(), 0); whitespaceOffset = whitespaceOffset0) {
     t1.add$1(html, t2.substring$2(text, whitespaceOffset, token.get$charOffset()));
     whitespaceOffset0 = $.add(token.get$charOffset(), token.get$slowCharCount());
     switch (token.get$kind()) {
@@ -7563,101 +7658,6 @@ $.BodyElementEvents$ = function(_ptr) {
   return new $.BodyElementEvents(_ptr);
 };
 
-$.KeywordToken$ = function(value, charOffset) {
-  return new $.KeywordToken(value, value.get$info(), charOffset, null);
-};
-
-$.KeywordState_KEYWORD_STATE = function() {
-  var strings, t1, i;
-  if ($.KeywordState__KEYWORD_STATE == null) {
-    strings = $.List_List(52);
-    for (t1 = $.CONSTANT77.length, i = 0; i < 52; ++i) {
-      if (i >= t1)
-        throw $.ioore(i);
-      strings[i] = $.CONSTANT77[i].get$syntax();
-    }
-    $.CONSTANT1.sort$1(strings, new $.KeywordState_KEYWORD_STATE_anon());
-    $.KeywordState__KEYWORD_STATE = $.KeywordState_computeKeywordStateTable(0, strings, 0, 52);
-  }
-  return $.KeywordState__KEYWORD_STATE;
-};
-
-$.KeywordState_computeKeywordStateTable = function(start, strings, offset, length$) {
-  var result, t1, t2, i, chunk, chunkStart, isLeaf, t3, c, t4;
-  result = $.List_List(26);
-  for (t1 = start + 1, t2 = strings.length, i = offset, chunk = 0, chunkStart = -1, isLeaf = false; t3 = offset + length$, i < t3; ++i) {
-    if (i < 0)
-      throw $.ioore(i);
-    t3 = strings[i];
-    t3 = $.getInterceptor$JSStringJSArray(t3).get$length(t3);
-    if (typeof t3 !== 'number')
-      return $.KeywordState_computeKeywordStateTable$bailout(1, start, strings, offset, length$, t3, result, t1, chunk, chunkStart, isLeaf, i, t2);
-    if (t3 === start)
-      isLeaf = true;
-    t3 = strings[i];
-    t3 = $.getInterceptor$JSStringJSArray(t3).get$length(t3);
-    if (typeof t3 !== 'number')
-      return $.KeywordState_computeKeywordStateTable$bailout(2, start, strings, offset, length$, result, isLeaf, t1, t3, chunk, chunkStart, i, t2);
-    if (t3 > start) {
-      t3 = strings[i];
-      c = $.getInterceptor$JSString(t3).charCodeAt$1(t3, start);
-      if (c !== (c | 0))
-        return $.KeywordState_computeKeywordStateTable$bailout(3, start, strings, offset, length$, result, isLeaf, t1, chunk, chunkStart, i, t2, c);
-      if (chunk !== c) {
-        if (chunkStart !== -1) {
-          t3 = chunk - 97;
-          t4 = $.KeywordState_computeKeywordStateTable(t1, strings, chunkStart, i - chunkStart);
-          if (t3 < 0 || t3 >= 26)
-            throw $.ioore(t3);
-          result[t3] = t4;
-        }
-        chunkStart = i;
-        chunk = c;
-      }
-    }
-  }
-  if (chunkStart !== -1) {
-    t4 = chunk - 97;
-    t1 = $.KeywordState_computeKeywordStateTable(t1, strings, chunkStart, t3 - chunkStart);
-    if (t4 < 0 || t4 >= 26)
-      throw $.ioore(t4);
-    result[t4] = t1;
-  } else {
-    if (offset < 0 || offset >= t2)
-      throw $.ioore(offset);
-    return $.LeafKeywordState$(strings[offset]);
-  }
-  if (isLeaf) {
-    if (offset < 0 || offset >= t2)
-      throw $.ioore(offset);
-    return $.ArrayKeywordState$(result, strings[offset]);
-  } else
-    return $.ArrayKeywordState$(result, null);
-};
-
-$._ElementAttributeMap$ = function(element) {
-  return new $._ElementAttributeMap(element);
-};
-
-$.LeafKeywordState$ = function(syntax) {
-  return new $.LeafKeywordState($.index($.Keyword_keywords(), syntax));
-};
-
-$.ArrayKeywordState$ = function(table, syntax) {
-  var t1 = syntax == null ? null : $.index($.Keyword_keywords(), syntax);
-  return new $.ArrayKeywordState(table, t1);
-};
-
-$.LinkedHashMap_LinkedHashMap = function() {
-  return $._LinkedHashMapImpl$();
-};
-
-$._LinkedHashMapImpl$ = function() {
-  var t1 = new $._LinkedHashMapImpl(null, null);
-  t1._LinkedHashMapImpl$0();
-  return t1;
-};
-
 $.Lists_indexOf$bailout = function(state0, a, element, startIndex, endIndex) {
   var i;
   if ($.geB(startIndex, $.getInterceptor$JSStringJSArray(a).get$length(a)))
@@ -7688,10 +7688,10 @@ $.KeywordState_computeKeywordStateTable$bailout = function(state0, env0, env1, e
   switch (state0) {
     case 1:
       t2 = env11;
-      i = env10;
-      isLeaf = env9;
-      chunkStart = env8;
-      chunk = env7;
+      isLeaf = env10;
+      chunkStart = env9;
+      chunk = env8;
+      i = env7;
       t1 = env6;
       result = env5;
       t3 = env4;
@@ -7702,9 +7702,9 @@ $.KeywordState_computeKeywordStateTable$bailout = function(state0, env0, env1, e
       break;
     case 2:
       t2 = env11;
-      i = env10;
-      chunkStart = env9;
-      chunk = env8;
+      chunkStart = env10;
+      chunk = env9;
+      i = env8;
       t3 = env7;
       t1 = env6;
       isLeaf = env5;
@@ -7715,11 +7715,11 @@ $.KeywordState_computeKeywordStateTable$bailout = function(state0, env0, env1, e
       start = env0;
       break;
     case 3:
-      c = env11;
-      t2 = env10;
-      i = env9;
-      chunkStart = env8;
-      chunk = env7;
+      t2 = env11;
+      c = env10;
+      chunkStart = env9;
+      chunk = env8;
+      i = env7;
       t1 = env6;
       isLeaf = env5;
       result = env4;
@@ -8181,14 +8181,6 @@ $.Strings__toJsStringArray$bailout = function(state0, env0, env1, env2) {
   }
 };
 
-$.typeNameInOpera.call$1 = $.typeNameInOpera;
-$.typeNameInOpera.$name = "typeNameInOpera";
-$.typeNameInFirefox.call$1 = $.typeNameInFirefox;
-$.typeNameInFirefox.$name = "typeNameInFirefox";
-$.typeNameInIE.call$1 = $.typeNameInIE;
-$.typeNameInIE.$name = "typeNameInIE";
-$.constructorNameFallback.call$1 = $.constructorNameFallback;
-$.constructorNameFallback.$name = "constructorNameFallback";
 $.Comparable_compare.call$2 = $.Comparable_compare;
 $.Comparable_compare.$name = "Comparable_compare";
 $.handleUpDown.call$1 = $.handleUpDown;
@@ -8209,6 +8201,14 @@ $.typeNameInChrome.call$1 = $.typeNameInChrome;
 $.typeNameInChrome.$name = "typeNameInChrome";
 $.typeNameInSafari.call$1 = $.typeNameInSafari;
 $.typeNameInSafari.$name = "typeNameInSafari";
+$.typeNameInOpera.call$1 = $.typeNameInOpera;
+$.typeNameInOpera.$name = "typeNameInOpera";
+$.typeNameInFirefox.call$1 = $.typeNameInFirefox;
+$.typeNameInFirefox.$name = "typeNameInFirefox";
+$.typeNameInIE.call$1 = $.typeNameInIE;
+$.typeNameInIE.$name = "typeNameInIE";
+$.constructorNameFallback.call$1 = $.constructorNameFallback;
+$.constructorNameFallback.$name = "constructorNameFallback";
 Isolate.$finishClasses($$);
 $$ = {};
 Isolate.makeConstantList = function(list) {
@@ -8424,6 +8424,150 @@ $.CONSTANT19 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolatePro
 $.CONSTANT22 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CONSTANT145, 0, 100);
 $.CONSTANT45 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CONSTANT86, 6, 124);
 $.CONSTANT64 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CONSTANT199, 0, 130);
+$.$$y = 121;
+$.$$z = 122;
+$.EOF_TOKEN = 0;
+$.$$OPEN_CURLY_BRACKET = 123;
+$.KEYWORD_TOKEN = 107;
+$.$$BAR = 124;
+$.IDENTIFIER_TOKEN = 97;
+$.$$CLOSE_CURLY_BRACKET = 125;
+$.$$TILDE = 126;
+$.DOUBLE_TOKEN = 100;
+$.BAD_INPUT_TOKEN = 88;
+$.INT_TOKEN = 105;
+$.$$NBSP = 160;
+$.HEXADECIMAL_TOKEN = 120;
+$.STRING_TOKEN = 39;
+$.AMPERSAND_TOKEN = 38;
+$.BACKPING_TOKEN = 96;
+$._JsonParser_BACKSPACE = 8;
+$.BACKSLASH_TOKEN = 92;
+$._JsonParser_TAB = 9;
+$.BANG_TOKEN = 33;
+$._JsonParser_NEW_LINE = 10;
+$.BAR_TOKEN = 124;
+$._JsonParser_FORM_FEED = 12;
+$.COLON_TOKEN = 58;
+$._JsonParser_CARRIAGE_RETURN = 13;
+$.COMMA_TOKEN = 44;
+$._JsonParser_SPACE = 32;
+$.EQ_TOKEN = 61;
+$._JsonParser_QUOTE = 34;
+$._JsonParser_PLUS = 43;
+$._Sort__INSERTION_SORT_THRESHOLD = 32;
+$._JsonParser_COMMA = 44;
+$.OPEN_CURLY_BRACKET_TOKEN = 123;
+$._JsonParser_MINUS = 45;
+$.OPEN_SQUARE_BRACKET_TOKEN = 91;
+$._JsonParser_DOT = 46;
+$.OPEN_PAREN_TOKEN = 40;
+$._JsonParser_SLASH = 47;
+$.LT_TOKEN = 60;
+$._JsonParser_CHAR_0 = 48;
+$.MINUS_TOKEN = 45;
+$._JsonParser_CHAR_1 = 49;
+$.PERIOD_TOKEN = 46;
+$._JsonParser_CHAR_2 = 50;
+$.PLUS_TOKEN = 43;
+$._JsonParser_CHAR_3 = 51;
+$.QUESTION_TOKEN = 63;
+$._JsonParser_CHAR_4 = 52;
+$.GT_TOKEN = 62;
+$._JsonParser_CHAR_5 = 53;
+$.CLOSE_CURLY_BRACKET_TOKEN = 125;
+$._JsonParser_CHAR_6 = 54;
+$.CLOSE_SQUARE_BRACKET_TOKEN = 93;
+$._JsonParser_CHAR_7 = 55;
+$.CLOSE_PAREN_TOKEN = 41;
+$._JsonParser_CHAR_8 = 56;
+$.SEMICOLON_TOKEN = 59;
+$._JsonParser_CHAR_9 = 57;
+$.SLASH_TOKEN = 47;
+$._JsonParser_COLON = 58;
+$._JsonParser_CHAR_CAPITAL_E = 69;
+$.TILDE_TOKEN = 126;
+$._JsonParser_LBRACKET = 91;
+$._JsonParser_BACKSLASH = 92;
+$.CARET_TOKEN = 94;
+$._JsonParser_RBRACKET = 93;
+$.STRING_INTERPOLATION_TOKEN = 128;
+$._JsonParser_CHAR_B = 98;
+$.LT_EQ_TOKEN = 129;
+$._JsonParser_CHAR_E = 101;
+$.FUNCTION_TOKEN = 130;
+$._JsonParser_CHAR_F = 102;
+$.SLASH_EQ_TOKEN = 131;
+$._JsonParser_CHAR_N = 110;
+$.PERIOD_PERIOD_PERIOD_TOKEN = 132;
+$._JsonParser_CHAR_R = 114;
+$.PERIOD_PERIOD_TOKEN = 133;
+$._JsonParser_CHAR_T = 116;
+$.EQ_EQ_EQ_TOKEN = 134;
+$._JsonParser_CHAR_U = 117;
+$.EQ_EQ_TOKEN = 135;
+$._JsonParser_LBRACE = 123;
+$.LT_LT_EQ_TOKEN = 136;
+$._JsonParser_RBRACE = 125;
+$.LT_LT_TOKEN = 137;
+$._JsonParser_STRING_LITERAL = 34;
+$.GT_EQ_TOKEN = 138;
+$._JsonParser_NUMBER_LITERAL = 45;
+$.GT_GT_EQ_TOKEN = 139;
+$._JsonParser_NULL_LITERAL = 110;
+$.INDEX_EQ_TOKEN = 140;
+$._JsonParser_FALSE_LITERAL = 102;
+$.INDEX_TOKEN = 141;
+$._JsonParser_TRUE_LITERAL = 116;
+$.BANG_EQ_EQ_TOKEN = 142;
+$._JsonParser_WHITESPACE = 32;
+$.BANG_EQ_TOKEN = 143;
+$._JsonParser_LAST_ASCII = 125;
+$._JsonParser_NULL_STRING = "null";
+$.AMPERSAND_AMPERSAND_TOKEN = 144;
+$._JsonParser_TRUE_STRING = "true";
+$.BAR_BAR_TOKEN = 146;
+$._JsonParser_FALSE_STRING = "false";
+$.BAR_EQ_TOKEN = 147;
+$._JsonParser_tokens = null;
+$.STAR_EQ_TOKEN = 148;
+$.PLUS_PLUS_TOKEN = 149;
+$.AMPERSAND_EQ_TOKEN = 145;
+$.PLUS_EQ_TOKEN = 150;
+$.MINUS_MINUS_TOKEN = 151;
+$.Keyword_values = Isolate.$isolateProperties.CONSTANT77;
+$.MINUS_EQ_TOKEN = 152;
+$.STAR_TOKEN = 42;
+$.TILDE_SLASH_EQ_TOKEN = 153;
+$.PERCENT_TOKEN = 37;
+$.TILDE_SLASH_TOKEN = 154;
+$.HASH_TOKEN = 35;
+$.PERCENT_EQ_TOKEN = 155;
+$.GT_GT_TOKEN = 156;
+$.CARET_EQ_TOKEN = 157;
+$.COMMENT_TOKEN = 158;
+$.STRING_INTERPOLATION_IDENTIFIER_TOKEN = 159;
+$.UNKNOWN_TOKEN = 1024;
+$.KeywordState__KEYWORD_STATE = null;
+$.Keyword__keywords = null;
+$.BACKPING_INFO = Isolate.$isolateProperties.CONSTANT15;
+$.BACKSLASH_INFO = Isolate.$isolateProperties.CONSTANT7;
+$.PERIOD_PERIOD_PERIOD_INFO = Isolate.$isolateProperties.CONSTANT19;
+$.CASCADE_PRECEDENCE = 2;
+$.PERIOD_PERIOD_INFO = Isolate.$isolateProperties.CONSTANT20;
+$.AT_TOKEN = 64;
+$.BANG_INFO = Isolate.$isolateProperties.CONSTANT61;
+$.COLON_INFO = Isolate.$isolateProperties.CONSTANT11;
+$.INDEX_INFO = Isolate.$isolateProperties.CONSTANT39;
+$.MINUS_MINUS_INFO = Isolate.$isolateProperties.CONSTANT53;
+$.PLUS_PLUS_INFO = Isolate.$isolateProperties.CONSTANT56;
+$.TILDE_INFO = Isolate.$isolateProperties.CONSTANT37;
+$.FUNCTION_INFO = Isolate.$isolateProperties.CONSTANT64;
+$.HASH_INFO = Isolate.$isolateProperties.CONSTANT34;
+$.INDEX_EQ_INFO = Isolate.$isolateProperties.CONSTANT38;
+$.SEMICOLON_INFO = Isolate.$isolateProperties.CONSTANT12;
+$.COMMA_INFO = Isolate.$isolateProperties.CONSTANT10;
+$.AT_INFO = Isolate.$isolateProperties.CONSTANT30;
 $.ASSIGNMENT_PRECEDENCE = 1;
 $.AMPERSAND_EQ_INFO = Isolate.$isolateProperties.CONSTANT47;
 $.Keyword_DYNAMIC_DEPRECATED = Isolate.$isolateProperties.CONSTANT75;
@@ -8518,10 +8662,10 @@ $.CLASS = "class";
 $.$$AMPERSAND = 38;
 $.INTERFACE = "interface";
 $.$$SQ = 39;
-$.$$OPEN_PAREN = 40;
 $.TYPEDEF = "typedef";
-$.$$CLOSE_PAREN = 41;
+$.$$OPEN_PAREN = 40;
 $.MEMBERS = "members";
+$.$$CLOSE_PAREN = 41;
 $.TYPES = "types";
 $.$$STAR = 42;
 $.ARGS = "args";
@@ -8592,150 +8736,6 @@ $.$$m = 109;
 $.$$n = 110;
 $.$$r = 114;
 $.$$x = 120;
-$.$$y = 121;
-$.$$z = 122;
-$.EOF_TOKEN = 0;
-$.$$OPEN_CURLY_BRACKET = 123;
-$.KEYWORD_TOKEN = 107;
-$.$$BAR = 124;
-$.IDENTIFIER_TOKEN = 97;
-$.$$CLOSE_CURLY_BRACKET = 125;
-$.$$TILDE = 126;
-$.DOUBLE_TOKEN = 100;
-$.BAD_INPUT_TOKEN = 88;
-$.INT_TOKEN = 105;
-$.$$NBSP = 160;
-$.HEXADECIMAL_TOKEN = 120;
-$.STRING_TOKEN = 39;
-$.AMPERSAND_TOKEN = 38;
-$.BACKPING_TOKEN = 96;
-$._JsonParser_BACKSPACE = 8;
-$.BACKSLASH_TOKEN = 92;
-$._JsonParser_TAB = 9;
-$.BANG_TOKEN = 33;
-$._JsonParser_NEW_LINE = 10;
-$.BAR_TOKEN = 124;
-$._JsonParser_FORM_FEED = 12;
-$.COLON_TOKEN = 58;
-$._JsonParser_CARRIAGE_RETURN = 13;
-$.COMMA_TOKEN = 44;
-$._JsonParser_SPACE = 32;
-$.EQ_TOKEN = 61;
-$._JsonParser_QUOTE = 34;
-$._JsonParser_PLUS = 43;
-$._Sort__INSERTION_SORT_THRESHOLD = 32;
-$._JsonParser_COMMA = 44;
-$.OPEN_CURLY_BRACKET_TOKEN = 123;
-$._JsonParser_MINUS = 45;
-$.OPEN_SQUARE_BRACKET_TOKEN = 91;
-$.OPEN_PAREN_TOKEN = 40;
-$._JsonParser_DOT = 46;
-$._JsonParser_SLASH = 47;
-$.LT_TOKEN = 60;
-$._JsonParser_CHAR_0 = 48;
-$._JsonParser_CHAR_1 = 49;
-$.PERIOD_TOKEN = 46;
-$._JsonParser_CHAR_2 = 50;
-$.PLUS_TOKEN = 43;
-$._JsonParser_CHAR_3 = 51;
-$.QUESTION_TOKEN = 63;
-$._JsonParser_CHAR_4 = 52;
-$.GT_TOKEN = 62;
-$.CLOSE_CURLY_BRACKET_TOKEN = 125;
-$._JsonParser_CHAR_5 = 53;
-$._JsonParser_CHAR_6 = 54;
-$.CLOSE_SQUARE_BRACKET_TOKEN = 93;
-$._JsonParser_CHAR_7 = 55;
-$.CLOSE_PAREN_TOKEN = 41;
-$._JsonParser_CHAR_8 = 56;
-$.SEMICOLON_TOKEN = 59;
-$._JsonParser_CHAR_9 = 57;
-$.SLASH_TOKEN = 47;
-$._JsonParser_COLON = 58;
-$._JsonParser_CHAR_CAPITAL_E = 69;
-$.TILDE_TOKEN = 126;
-$._JsonParser_LBRACKET = 91;
-$._JsonParser_BACKSLASH = 92;
-$.CARET_TOKEN = 94;
-$._JsonParser_RBRACKET = 93;
-$.STRING_INTERPOLATION_TOKEN = 128;
-$._JsonParser_CHAR_B = 98;
-$.LT_EQ_TOKEN = 129;
-$._JsonParser_CHAR_E = 101;
-$.FUNCTION_TOKEN = 130;
-$._JsonParser_CHAR_F = 102;
-$.SLASH_EQ_TOKEN = 131;
-$._JsonParser_CHAR_N = 110;
-$.PERIOD_PERIOD_PERIOD_TOKEN = 132;
-$._JsonParser_CHAR_R = 114;
-$.PERIOD_PERIOD_TOKEN = 133;
-$._JsonParser_CHAR_T = 116;
-$.EQ_EQ_EQ_TOKEN = 134;
-$._JsonParser_CHAR_U = 117;
-$.EQ_EQ_TOKEN = 135;
-$._JsonParser_LBRACE = 123;
-$.LT_LT_EQ_TOKEN = 136;
-$._JsonParser_RBRACE = 125;
-$.LT_LT_TOKEN = 137;
-$._JsonParser_STRING_LITERAL = 34;
-$.GT_EQ_TOKEN = 138;
-$._JsonParser_NUMBER_LITERAL = 45;
-$.GT_GT_EQ_TOKEN = 139;
-$._JsonParser_NULL_LITERAL = 110;
-$.INDEX_EQ_TOKEN = 140;
-$._JsonParser_FALSE_LITERAL = 102;
-$.INDEX_TOKEN = 141;
-$._JsonParser_TRUE_LITERAL = 116;
-$.BANG_EQ_EQ_TOKEN = 142;
-$._JsonParser_WHITESPACE = 32;
-$.BANG_EQ_TOKEN = 143;
-$._JsonParser_LAST_ASCII = 125;
-$._JsonParser_NULL_STRING = "null";
-$.AMPERSAND_AMPERSAND_TOKEN = 144;
-$._JsonParser_TRUE_STRING = "true";
-$.BAR_BAR_TOKEN = 146;
-$._JsonParser_FALSE_STRING = "false";
-$.BAR_EQ_TOKEN = 147;
-$._JsonParser_tokens = null;
-$.STAR_EQ_TOKEN = 148;
-$.PLUS_PLUS_TOKEN = 149;
-$.AMPERSAND_EQ_TOKEN = 145;
-$.PLUS_EQ_TOKEN = 150;
-$.MINUS_MINUS_TOKEN = 151;
-$.Keyword_values = Isolate.$isolateProperties.CONSTANT77;
-$.MINUS_EQ_TOKEN = 152;
-$.STAR_TOKEN = 42;
-$.TILDE_SLASH_EQ_TOKEN = 153;
-$.PERCENT_TOKEN = 37;
-$.TILDE_SLASH_TOKEN = 154;
-$.HASH_TOKEN = 35;
-$.PERCENT_EQ_TOKEN = 155;
-$.GT_GT_TOKEN = 156;
-$.CARET_EQ_TOKEN = 157;
-$.COMMENT_TOKEN = 158;
-$.STRING_INTERPOLATION_IDENTIFIER_TOKEN = 159;
-$.MINUS_TOKEN = 45;
-$.UNKNOWN_TOKEN = 1024;
-$.KeywordState__KEYWORD_STATE = null;
-$.Keyword__keywords = null;
-$.BACKPING_INFO = Isolate.$isolateProperties.CONSTANT15;
-$.BACKSLASH_INFO = Isolate.$isolateProperties.CONSTANT7;
-$.PERIOD_PERIOD_PERIOD_INFO = Isolate.$isolateProperties.CONSTANT19;
-$.CASCADE_PRECEDENCE = 2;
-$.PERIOD_PERIOD_INFO = Isolate.$isolateProperties.CONSTANT20;
-$.AT_TOKEN = 64;
-$.BANG_INFO = Isolate.$isolateProperties.CONSTANT61;
-$.COLON_INFO = Isolate.$isolateProperties.CONSTANT11;
-$.INDEX_INFO = Isolate.$isolateProperties.CONSTANT39;
-$.MINUS_MINUS_INFO = Isolate.$isolateProperties.CONSTANT53;
-$.PLUS_PLUS_INFO = Isolate.$isolateProperties.CONSTANT56;
-$.TILDE_INFO = Isolate.$isolateProperties.CONSTANT37;
-$.FUNCTION_INFO = Isolate.$isolateProperties.CONSTANT64;
-$.HASH_INFO = Isolate.$isolateProperties.CONSTANT34;
-$.INDEX_EQ_INFO = Isolate.$isolateProperties.CONSTANT38;
-$.SEMICOLON_INFO = Isolate.$isolateProperties.CONSTANT12;
-$.COMMA_INFO = Isolate.$isolateProperties.CONSTANT10;
-$.AT_INFO = Isolate.$isolateProperties.CONSTANT30;
 $.getInterceptor$JSStringJSArray = function(receiver) {
   if (typeof receiver == 'string') return $.JSString.prototype;
   if (receiver != null && receiver.constructor == Array) return $.JSArray.prototype;

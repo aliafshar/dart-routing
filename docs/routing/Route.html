@@ -58,7 +58,12 @@ class Route {
    for (var matcher in matchers) {
      if (matcher != null) {
        var args = matcher.match(request);
-       args.forEach((var k, var v) =&gt; matchArgs[k] = v);
+       if (args != null) {
+         args.forEach((var k, var v) =&gt; matchArgs[k] = v);
+       }
+       else {
+         return null;
+       }
      }
    }
    var match = new RouteMatch(this, name, matchArgs);
@@ -148,7 +153,12 @@ RouteMatch match(HttpRequest request) {
  for (var matcher in matchers) {
    if (matcher != null) {
      var args = matcher.match(request);
-     args.forEach((var k, var v) =&gt; matchArgs[k] = v);
+     if (args != null) {
+       args.forEach((var k, var v) =&gt; matchArgs[k] = v);
+     }
+     else {
+       return null;
+     }
    }
  }
  var match = new RouteMatch(this, name, matchArgs);
@@ -163,7 +173,7 @@ RouteMatch match(HttpRequest request) {
         </div>
         
         <div class="footer">
-          <div>This page was generated at 2012-12-28 14:47:41.867</div>
+          <div>This page was generated at 2013-01-05 18:56:45.049</div>
         </div>
         <script async src="../client-live-nav.js"></script>
         </body></html>

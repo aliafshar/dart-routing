@@ -108,7 +108,7 @@ class RoutePath implements RouteComponent {
    var path = request.path;
    var pathsegments = split(path);
    if (pathsegments.length != segments.length) {
-     return {'__error__' : 404};
+     return null;
    }
    var parts = zip(pathsegments, segments);
    var args = &lt;dynamic&gt;{};
@@ -120,7 +120,7 @@ class RoutePath implements RouteComponent {
        }
      }
      else {
-       return {'__error__': 404};
+       return null;
      }
    }
    return args;
@@ -262,7 +262,7 @@ Map&lt;String, dynamic&gt; match(HttpRequest request) {
  var path = request.path;
  var pathsegments = split(path);
  if (pathsegments.length != segments.length) {
-   return {'__error__' : 404};
+   return null;
  }
  var parts = zip(pathsegments, segments);
  var args = &lt;dynamic&gt;{};
@@ -274,7 +274,7 @@ Map&lt;String, dynamic&gt; match(HttpRequest request) {
      }
    }
    else {
-     return {'__error__': 404};
+     return null;
    }
  }
  return args;
@@ -288,7 +288,7 @@ Map&lt;String, dynamic&gt; match(HttpRequest request) {
         </div>
         
         <div class="footer">
-          <div>This page was generated at 2012-12-28 14:47:41.872</div>
+          <div>This page was generated at 2013-01-05 18:56:45.053</div>
         </div>
         <script async src="../client-live-nav.js"></script>
         </body></html>

@@ -2,6 +2,1383 @@
 [
   {
     "kind": "library",
+    "name": "logging",
+    "children": [
+      {
+        "ref": {
+          "name": "Level",
+          "refId": "Level"
+        },
+        "kind": "property",
+        "name": "_rootLevel",
+        "id": "_rootLevel"
+      },
+      {
+        "ref": {
+          "name": "bool",
+          "refId": "bool"
+        },
+        "kind": "property",
+        "name": "hierarchicalLoggingEnabled",
+        "id": "hierarchicalLoggingEnabled"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nA log entry representation used to propagate information from [Logger] to\nindividual [Handler]s.\n\n",
+        "name": "LogRecord",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "LogRecord",
+            "children": [
+              {
+                "ref": {
+                  "name": "Level",
+                  "refId": "Level"
+                },
+                "kind": "param",
+                "name": "level",
+                "id": "level"
+              },
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              },
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "loggerName",
+                "id": "loggerName"
+              },
+              {
+                "ref": {
+                  "name": "dynamic",
+                  "refId": "dynamic"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "time",
+                "id": "time"
+              },
+              {
+                "ref": {
+                  "name": "Exception",
+                  "refId": "Exception"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "exception",
+                "id": "exception"
+              },
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "exceptionText",
+                "id": "exceptionText"
+              }
+            ],
+            "id": "LogRecord6()"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "kind": "property",
+            "name": "level",
+            "id": "level"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "message",
+            "id": "message"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "loggerName",
+            "id": "loggerName"
+          },
+          {
+            "ref": {
+              "name": "Date",
+              "refId": "Date"
+            },
+            "kind": "property",
+            "name": "time",
+            "id": "time"
+          },
+          {
+            "ref": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "property",
+            "name": "sequenceNumber",
+            "id": "sequenceNumber"
+          },
+          {
+            "ref": {
+              "name": "int",
+              "refId": "int"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "_nextNumber",
+            "id": "_nextNumber"
+          },
+          {
+            "ref": {
+              "name": "Exception",
+              "refId": "Exception"
+            },
+            "kind": "property",
+            "name": "exception",
+            "id": "exception"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "exceptionText",
+            "id": "exceptionText"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "LogRecord",
+            "children": [
+              {
+                "ref": {
+                  "name": "Level",
+                  "refId": "Level"
+                },
+                "kind": "param",
+                "name": "level",
+                "id": "level"
+              },
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              },
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "loggerName",
+                "id": "loggerName"
+              },
+              {
+                "ref": {
+                  "name": "dynamic",
+                  "refId": "dynamic"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "time",
+                "id": "time"
+              },
+              {
+                "ref": {
+                  "name": "Exception",
+                  "refId": "Exception"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "exception",
+                "id": "exception"
+              },
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "exceptionText",
+                "id": "exceptionText"
+              }
+            ],
+            "id": "LogRecord6()"
+          }
+        ],
+        "id": "LogRecord"
+      },
+      {
+        "interfaces": [
+          {
+            "name": "Comparable",
+            "refId": "Comparable"
+          }
+        ],
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\n[Level]s to control logging output. Logging can be enabled to include all\nlevels above certain [Level]. [Level]s are ordered using an integer\nvalue [Level.value]. The predefined [Level] constants below are sorted as\nfollows (in descending order): [Level.SHOUT], [Level.SEVERE],\n[Level.WARNING], [Level.INFO], [Level.CONFIG], [Level.FINE], [Level.FINER],\n[Level.FINEST], and [Level.ALL].\n\nWe recommend using one of the predefined logging levels. If you define your\nown level, make sure you use a value between those used in [Level.ALL] and\n[Level.OFF].\n\n",
+        "name": "Level",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "Level",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "name",
+                "id": "name"
+              },
+              {
+                "ref": {
+                  "name": "int",
+                  "refId": "int"
+                },
+                "kind": "param",
+                "name": "value",
+                "id": "value"
+              }
+            ],
+            "id": "Level2()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "method",
+            "name": "==",
+            "children": [
+              {
+                "ref": {
+                  "name": "Level",
+                  "refId": "Level"
+                },
+                "kind": "param",
+                "name": "other",
+                "id": "other"
+              }
+            ],
+            "id": "==1()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "method",
+            "name": "<",
+            "children": [
+              {
+                "ref": {
+                  "name": "Level",
+                  "refId": "Level"
+                },
+                "kind": "param",
+                "name": "other",
+                "id": "other"
+              }
+            ],
+            "id": "<1()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "method",
+            "name": "<=",
+            "children": [
+              {
+                "ref": {
+                  "name": "Level",
+                  "refId": "Level"
+                },
+                "kind": "param",
+                "name": "other",
+                "id": "other"
+              }
+            ],
+            "id": "<=1()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "method",
+            "name": ">",
+            "children": [
+              {
+                "ref": {
+                  "name": "Level",
+                  "refId": "Level"
+                },
+                "kind": "param",
+                "name": "other",
+                "id": "other"
+              }
+            ],
+            "id": ">1()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "method",
+            "name": ">=",
+            "children": [
+              {
+                "ref": {
+                  "name": "Level",
+                  "refId": "Level"
+                },
+                "kind": "param",
+                "name": "other",
+                "id": "other"
+              }
+            ],
+            "id": ">=1()"
+          },
+          {
+            "returnType": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "method",
+            "name": "compareTo",
+            "children": [
+              {
+                "ref": {
+                  "name": "Level",
+                  "refId": "Level"
+                },
+                "kind": "param",
+                "name": "other",
+                "id": "other"
+              }
+            ],
+            "id": "compareTo1()"
+          },
+          {
+            "returnType": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "method",
+            "name": "hashCode",
+            "id": "hashCode0()"
+          },
+          {
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "name": "toString",
+            "id": "toString0()"
+          },
+          {
+            "ref": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "property",
+            "name": "hashCode",
+            "id": "hashCode"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "name",
+            "id": "name"
+          },
+          {
+            "ref": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "property",
+            "name": "value",
+            "id": "value"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "ALL",
+            "id": "ALL"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "OFF",
+            "id": "OFF"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "FINEST",
+            "id": "FINEST"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "FINER",
+            "id": "FINER"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "FINE",
+            "id": "FINE"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "CONFIG",
+            "id": "CONFIG"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "INFO",
+            "id": "INFO"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "WARNING",
+            "id": "WARNING"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "SEVERE",
+            "id": "SEVERE"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "SHOUT",
+            "id": "SHOUT"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "Level",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "name",
+                "id": "name"
+              },
+              {
+                "ref": {
+                  "name": "int",
+                  "refId": "int"
+                },
+                "kind": "param",
+                "name": "value",
+                "id": "value"
+              }
+            ],
+            "id": "Level2()"
+          }
+        ],
+        "id": "Level"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "List of handlers that will be called on a logger event.\n",
+        "name": "LoggerHandlerList",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "LoggerHandlerList",
+            "children": [
+              {
+                "ref": {
+                  "name": "Logger",
+                  "refId": "Logger"
+                },
+                "kind": "param",
+                "name": "_logger",
+                "id": "_logger"
+              }
+            ],
+            "id": "LoggerHandlerList1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "name": "add",
+            "children": [
+              {
+                "ref": {
+                  "name": "LoggerHandler",
+                  "refId": "LoggerHandler"
+                },
+                "kind": "param",
+                "name": "handler",
+                "id": "handler"
+              }
+            ],
+            "id": "add1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "name": "remove",
+            "children": [
+              {
+                "ref": {
+                  "name": "LoggerHandler",
+                  "refId": "LoggerHandler"
+                },
+                "kind": "param",
+                "name": "handler",
+                "id": "handler"
+              }
+            ],
+            "id": "remove1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "name": "clear",
+            "id": "clear0()"
+          },
+          {
+            "ref": {
+              "name": "Logger",
+              "refId": "Logger"
+            },
+            "kind": "property",
+            "name": "_logger",
+            "id": "_logger"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "LoggerHandlerList",
+            "children": [
+              {
+                "ref": {
+                  "name": "Logger",
+                  "refId": "Logger"
+                },
+                "kind": "param",
+                "name": "_logger",
+                "id": "_logger"
+              }
+            ],
+            "id": "LoggerHandlerList1()"
+          }
+        ],
+        "id": "LoggerHandlerList"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "Event manager for a [Logger] (holds events that a [Logger] can fire).\n",
+        "name": "LoggerEvents",
+        "children": [
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "LoggerEvents",
+            "children": [
+              {
+                "ref": {
+                  "name": "Logger",
+                  "refId": "Logger"
+                },
+                "kind": "param",
+                "name": "_logger",
+                "id": "_logger"
+              }
+            ],
+            "id": "LoggerEvents1()"
+          },
+          {
+            "returnType": {
+              "name": "LoggerHandlerList",
+              "refId": "LoggerHandlerList"
+            },
+            "kind": "method",
+            "comment": "Event fired when a log record is added to a [Logger].\n",
+            "name": "record",
+            "id": "record0()"
+          },
+          {
+            "ref": {
+              "name": "LoggerHandlerList",
+              "refId": "LoggerHandlerList"
+            },
+            "kind": "property",
+            "comment": "Event fired when a log record is added to a [Logger].\n",
+            "name": "record",
+            "id": "record"
+          },
+          {
+            "ref": {
+              "name": "Logger",
+              "refId": "Logger"
+            },
+            "kind": "property",
+            "name": "_logger",
+            "id": "_logger"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "LoggerEvents",
+            "children": [
+              {
+                "ref": {
+                  "name": "Logger",
+                  "refId": "Logger"
+                },
+                "kind": "param",
+                "name": "_logger",
+                "id": "_logger"
+              }
+            ],
+            "id": "LoggerEvents1()"
+          }
+        ],
+        "id": "LoggerEvents"
+      },
+      {
+        "kind": "typedef",
+        "comment": "Handler callback to process log entries as they are added to a [Logger].\n",
+        "name": "LoggerHandler",
+        "id": "LoggerHandler"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nUse a [Logger] to log debug messages. [Logger]s are named using a\nhierarchical dot-separated name convention.\n\n",
+        "name": "Logger",
+        "children": [
+          {
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "comment": "The full name of this logger, which includes the parent's full name.\n",
+            "name": "fullName",
+            "id": "fullName0()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "\nSingleton constructor. Calling `new Logger(name)` will return the same\nactual instance whenever it is called with the same string name.\n\n",
+            "name": "Logger",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "name",
+                "id": "name"
+              }
+            ],
+            "id": "Logger1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "name": "Logger._internal",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "name",
+                "id": "name"
+              },
+              {
+                "ref": {
+                  "name": "Logger",
+                  "refId": "Logger"
+                },
+                "kind": "param",
+                "name": "parent",
+                "id": "parent"
+              }
+            ],
+            "id": "Logger._internal2()"
+          },
+          {
+            "returnType": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "kind": "method",
+            "comment": "\nEffective level considering the levels established in this logger's parents\n(when [hierarchicalLoggingEnabled] is true).\n\n",
+            "name": "level",
+            "id": "level0()"
+          },
+          {
+            "isSetter": true,
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "Override the level for this particular [Logger] and its children.\n",
+            "name": "level=",
+            "children": [
+              {
+                "ref": {
+                  "name": "dynamic",
+                  "refId": "dynamic"
+                },
+                "kind": "param",
+                "name": "value",
+                "id": "value"
+              }
+            ],
+            "id": "level=1()"
+          },
+          {
+            "returnType": {
+              "name": "LoggerEvents",
+              "refId": "LoggerEvents"
+            },
+            "kind": "method",
+            "comment": "\nReturns an event manager for this [Logger]. You can listen for log messages\nby adding a [LoggerHandler] to an event from the event manager, for\ninstance:\n   logger.on.record.add((record) { ... });\n\n",
+            "name": "on",
+            "id": "on0()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "Adds a handler to listen whenever a log record is added to this logger.\n",
+            "name": "_addHandler",
+            "children": [
+              {
+                "ref": {
+                  "name": "LoggerHandler",
+                  "refId": "LoggerHandler"
+                },
+                "kind": "param",
+                "name": "handler",
+                "id": "handler"
+              }
+            ],
+            "id": "_addHandler1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "Remove a previously added handler.\n",
+            "name": "_removeHandler",
+            "children": [
+              {
+                "ref": {
+                  "name": "LoggerHandler",
+                  "refId": "LoggerHandler"
+                },
+                "kind": "param",
+                "name": "handler",
+                "id": "handler"
+              }
+            ],
+            "id": "_removeHandler1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "Removes all handlers previously added to this logger.\n",
+            "name": "_clearHandlers",
+            "id": "_clearHandlers0()"
+          },
+          {
+            "returnType": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "method",
+            "comment": "Whether a message for [value]'s level is loggable in this logger.\n",
+            "name": "isLoggable",
+            "children": [
+              {
+                "ref": {
+                  "name": "Level",
+                  "refId": "Level"
+                },
+                "kind": "param",
+                "name": "value",
+                "id": "value"
+              }
+            ],
+            "id": "isLoggable1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "\nAdds a log record for a [message] at a particular [logLevel] if\n`isLoggable(logLevel)` is true. Use this method to create log entries for\nuser-defined levels. To record a message at a predefined level (e.g.\n[Level.INFO], [Level.WARNING], etc) you can use their specialized methods\ninstead (e.g. [info], [warning], etc).\n\n",
+            "name": "log",
+            "children": [
+              {
+                "ref": {
+                  "name": "Level",
+                  "refId": "Level"
+                },
+                "kind": "param",
+                "name": "logLevel",
+                "id": "logLevel"
+              },
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              }
+            ],
+            "id": "log2()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "Log message at level [Level.FINEST].\n",
+            "name": "finest",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              }
+            ],
+            "id": "finest1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "Log message at level [Level.FINER].\n",
+            "name": "finer",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              }
+            ],
+            "id": "finer1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "Log message at level [Level.FINE].\n",
+            "name": "fine",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              }
+            ],
+            "id": "fine1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "Log message at level [Level.CONFIG].\n",
+            "name": "config",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              }
+            ],
+            "id": "config1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "Log message at level [Level.INFO].\n",
+            "name": "info",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              }
+            ],
+            "id": "info1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "Log message at level [Level.WARNING].\n",
+            "name": "warning",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              }
+            ],
+            "id": "warning1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "Log message at level [Level.SEVERE].\n",
+            "name": "severe",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              }
+            ],
+            "id": "severe1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "comment": "Log message at level [Level.SHOUT].\n",
+            "name": "shout",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              }
+            ],
+            "id": "shout1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "name": "_publish",
+            "children": [
+              {
+                "ref": {
+                  "name": "LogRecord",
+                  "refId": "LogRecord"
+                },
+                "kind": "param",
+                "name": "record",
+                "id": "record"
+              }
+            ],
+            "id": "_publish1()"
+          },
+          {
+            "isStatic": true,
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "method",
+            "comment": "Top-level root [Logger].\n",
+            "name": "root",
+            "id": "root0()"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "comment": "The full name of this logger, which includes the parent's full name.\n",
+            "name": "fullName",
+            "id": "fullName"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "kind": "property",
+            "comment": "\nEffective level considering the levels established in this logger's parents\n(when [hierarchicalLoggingEnabled] is true).\n\n",
+            "name": "level",
+            "id": "level"
+          },
+          {
+            "ref": {
+              "name": "LoggerEvents",
+              "refId": "LoggerEvents"
+            },
+            "kind": "property",
+            "comment": "\nReturns an event manager for this [Logger]. You can listen for log messages\nby adding a [LoggerHandler] to an event from the event manager, for\ninstance:\n   logger.on.record.add((record) { ... });\n\n",
+            "name": "on",
+            "id": "on"
+          },
+          {
+            "ref": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "comment": "Top-level root [Logger].\n",
+            "name": "root",
+            "id": "root"
+          },
+          {
+            "ref": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "property",
+            "name": "name",
+            "id": "name"
+          },
+          {
+            "ref": {
+              "name": "Logger",
+              "refId": "Logger"
+            },
+            "kind": "property",
+            "name": "parent",
+            "id": "parent"
+          },
+          {
+            "ref": {
+              "name": "Level",
+              "refId": "Level"
+            },
+            "kind": "property",
+            "name": "_level",
+            "id": "_level"
+          },
+          {
+            "ref": {
+              "name": "Map",
+              "refId": "Map",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                },
+                {
+                  "name": "Logger",
+                  "refId": "Logger"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "children",
+            "id": "children"
+          },
+          {
+            "ref": {
+              "name": "List",
+              "refId": "List",
+              "arguments": [
+                {
+                  "name": "LoggerHandler",
+                  "refId": "LoggerHandler"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "_handlers",
+            "id": "_handlers"
+          },
+          {
+            "ref": {
+              "name": "Map",
+              "refId": "Map",
+              "arguments": [
+                {
+                  "name": "String",
+                  "refId": "String"
+                },
+                {
+                  "name": "Logger",
+                  "refId": "Logger"
+                }
+              ]
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "_loggers",
+            "id": "_loggers"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "comment": "\nSingleton constructor. Calling `new Logger(name)` will return the same\nactual instance whenever it is called with the same string name.\n\n",
+            "name": "Logger",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "name",
+                "id": "name"
+              }
+            ],
+            "id": "Logger1()"
+          },
+          {
+            "returnType": {
+              "name": "dynamic",
+              "refId": "dynamic"
+            },
+            "kind": "constructor",
+            "name": "Logger._internal",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "name",
+                "id": "name"
+              },
+              {
+                "ref": {
+                  "name": "Logger",
+                  "refId": "Logger"
+                },
+                "kind": "param",
+                "name": "parent",
+                "id": "parent"
+              }
+            ],
+            "id": "Logger._internal2()"
+          }
+        ],
+        "id": "Logger"
+      }
+    ],
+    "id": "package:logging/logging.dart"
+  },
+  {
+    "kind": "library",
     "name": "routing",
     "children": [
       {
@@ -59,6 +1436,15 @@
           }
         ],
         "id": "zip2()"
+      },
+      {
+        "ref": {
+          "name": "dynamic",
+          "refId": "dynamic"
+        },
+        "kind": "property",
+        "name": "logFine",
+        "id": "logFine"
       },
       {
         "interfaces": [
@@ -419,27 +1805,6 @@
             "id": "match1()"
           },
           {
-            "returnType": {
-              "name": "Function",
-              "refId": "Function"
-            },
-            "kind": "method",
-            "comment": "\nFinds a view for a named route.\n\n",
-            "name": "findView",
-            "children": [
-              {
-                "ref": {
-                  "name": "RouteMatch",
-                  "refId": "RouteMatch"
-                },
-                "kind": "param",
-                "name": "m",
-                "id": "m"
-              }
-            ],
-            "id": "findView1()"
-          },
-          {
             "ref": {
               "name": "List",
               "refId": "List",
@@ -472,25 +1837,6 @@
             "kind": "property",
             "name": "routes",
             "id": "routes"
-          },
-          {
-            "ref": {
-              "name": "Map",
-              "refId": "Map",
-              "arguments": [
-                {
-                  "name": "String",
-                  "refId": "String"
-                },
-                {
-                  "name": "Function",
-                  "refId": "Function"
-                }
-              ]
-            },
-            "kind": "property",
-            "name": "views",
-            "id": "views"
           },
           {
             "returnType": {
@@ -1970,6 +3316,6 @@
         "id": "Tuple"
       }
     ],
-    "id": "file:///usr/local/google/home/afshar/src/arzio/google3/dart-routing/lib/routing.dart"
+    "id": "file:///home/afshar/wrk/dart-routing/lib/routing.dart"
   }
 ]
