@@ -72,22 +72,15 @@ class RouteMatch {
 class RouteMap {
 
   // The list of routes to track the order.
-  List<Route> routeList;
+  final List<Route> routeList = <Route>[];
 
   // The map of routes by name.
-  Map<String, Route> routes;
-
-  // The map of views by name.
-  Map<String, Function> views;
+  final Map<String, Route> routes = <Route>{};
 
   /**
    * Creates a new route map.
    */
-  RouteMap() {
-    views = <Function>{};
-    routes = <Route>{};
-    routeList = <Route>[];
-  }
+  RouteMap();
 
   /**
    * Adds a route to this map.
@@ -112,20 +105,4 @@ class RouteMap {
     logFine('No match');
   }
 
-  /**
-   * Finds a view for a named route.
-   */
-  Function findView(RouteMatch m) {
-    var name;
-    if (m.isError) {
-      name = m.error.toString();
-    }
-    else if (m.isFile) {
-      name = '__static__';
-    }
-    else {
-      name = m.name;
-    }
-    return views[name];
-  }
 }
