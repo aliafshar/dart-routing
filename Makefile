@@ -3,13 +3,16 @@
 
 DARTDOC = /usr/local/dart/dart-sdk/bin/dartdoc
 
-doc:
+builddoc:
 	${DARTDOC} lib/routing.dart
+	git commit -a -m "Generated docs."
+	git push origin master
+
+pushdoc: builddoc
 	git push origin --delete gh-pages
-	git co --orphan gh-pages
+	git checkout --orphan gh-pages
 	git rm -rf .gitignore lib test Makefile pubspec.yaml README.md
 	git commit -m "Docs"
 	git push origin gh-pages
-	git co master
+	git checkout master
 	git branch -D gh-pages
-	git commit -a -m "Generated docs."
