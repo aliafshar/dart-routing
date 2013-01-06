@@ -1,0 +1,233 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>RouteVariableSegment class / routing Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="routing" data-type="RouteVariableSegment">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../routing.html">routing</a> &rsaquo; <a href="../routing/RouteVariableSegment.html">RouteVariableSegment</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>RouteVariableSegment</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>A variable route path segment.</p>
+<p>Variable segments are defined as a variable name, and optional type (default
+is String), for example:</p>
+<pre><code>// A segment containing a variable named `name`.
+var s = new RouteVariableSegment.fromSegment('&lt;name&gt;');
+</code></pre>
+<pre><code>// A segment containing an integer variable named `blogid`.
+var s = new RouteVariableSegment.fromSegment('&lt;int:blogid&gt;');
+</code></pre>
+<pre class="source">
+class RouteVariableSegment implements RouteSegment {
+
+ // Key of segment. In variable segments, this key becomes the argument name.
+ final String key;
+ final String type;
+
+ final Map&lt;String, Function&gt; typeMap = {
+   'str': (String s) =&gt; s,
+   'int': intParser,
+ };
+
+ RouteVariableSegment(this.key, this.type);
+
+ /**
+  * Creates a new variable segment from a string.
+  */
+ factory RouteVariableSegment.fromSegment(String seg) {
+   var actualName = seg.substring(1, seg.length - 1);
+   var parts = actualName.split(':');
+   if (parts.length == 1) {
+     return new RouteVariableSegment(parts[0], 'str');
+   }
+   else {
+     return new RouteVariableSegment(parts[1], parts[0]);
+   }
+ }
+
+ /**
+  * Parses a string component.
+  *
+  * For [RouteVariableSegment]s this returns the parsed value, or [null] if
+  * the value does not match.
+  */
+ dynamic parse(String value) {
+   if (typeMap.containsKey(type)) {
+     Function parser = typeMap[type];
+     return parser(value);
+   }
+   return null;
+ }
+
+ /**
+  * Builds a path component from this segment.
+  *
+  * For variable segments, this returns a &lt;key, value&gt; map or raises an error
+  * on failure if incorrect/missing arguments are providedd.
+  */
+ String build(Map&lt;String, dynamic&gt; args) {
+   if (args.containsKey(key)) {
+     return args[key].toString();
+   }
+   else {
+     throw new RouteBuildError('Missing argument "$key"');
+   }
+ }
+
+}
+</pre>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../routing/RouteSegment.html">RouteSegment</a></span></p>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="RouteVariableSegment">
+<button class="show-code">Code</button>
+new <strong>RouteVariableSegment</strong>(String key, String type) <a class="anchor-link" href="#RouteVariableSegment"
+              title="Permalink to RouteVariableSegment.RouteVariableSegment">#</a></h4>
+<div class="doc">
+<pre class="source">
+RouteVariableSegment(this.key, this.type);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="RouteVariableSegment.fromSegment">
+<button class="show-code">Code</button>
+factory <strong>RouteVariableSegment.fromSegment</strong>(String seg) <a class="anchor-link" href="#RouteVariableSegment.fromSegment"
+              title="Permalink to RouteVariableSegment.RouteVariableSegment.fromSegment">#</a></h4>
+<div class="doc">
+<p>Creates a new variable segment from a string.</p>
+<pre class="source">
+factory RouteVariableSegment.fromSegment(String seg) {
+ var actualName = seg.substring(1, seg.length - 1);
+ var parts = actualName.split(':');
+ if (parts.length == 1) {
+   return new RouteVariableSegment(parts[0], 'str');
+ }
+ else {
+   return new RouteVariableSegment(parts[1], parts[0]);
+ }
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="key">
+<button class="show-code">Code</button>
+final String         <strong>key</strong> <a class="anchor-link"
+            href="#key"
+            title="Permalink to RouteVariableSegment.key">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final String key;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="type">
+<button class="show-code">Code</button>
+final String         <strong>type</strong> <a class="anchor-link"
+            href="#type"
+            title="Permalink to RouteVariableSegment.type">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final String type;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="typeMap">
+<button class="show-code">Code</button>
+final Map&lt;String, Function&gt;         <strong>typeMap</strong> <a class="anchor-link"
+            href="#typeMap"
+            title="Permalink to RouteVariableSegment.typeMap">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final Map&lt;String, Function&gt; typeMap = {
+ 'str': (String s) =&gt; s,
+ 'int': intParser,
+};
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="build">
+<button class="show-code">Code</button>
+String <strong>build</strong>(Map&lt;String, Dynamic&gt; args) <a class="anchor-link" href="#build"
+              title="Permalink to RouteVariableSegment.build">#</a></h4>
+<div class="doc">
+<p>Builds a path component from this segment.</p>
+<p>For variable segments, this returns a &lt;key, value> map or raises an error
+on failure if incorrect/missing arguments are providedd.</p>
+<pre class="source">
+String build(Map&lt;String, dynamic&gt; args) {
+ if (args.containsKey(key)) {
+   return args[key].toString();
+ }
+ else {
+   throw new RouteBuildError('Missing argument "$key"');
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="parse">
+<button class="show-code">Code</button>
+<strong>parse</strong>(String value) <a class="anchor-link" href="#parse"
+              title="Permalink to RouteVariableSegment.parse">#</a></h4>
+<div class="doc">
+<p>Parses a string component.</p>
+<p>For <a class="crossref" href="../routing/RouteVariableSegment.html#RouteVariableSegment">RouteVariableSegment</a>s this returns the parsed value, or <code>null</code> if
+the value does not match.</p>
+<pre class="source">
+dynamic parse(String value) {
+ if (typeMap.containsKey(type)) {
+   Function parser = typeMap[type];
+   return parser(value);
+ }
+ return null;
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2013-01-05 18:56:45.057</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

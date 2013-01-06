@@ -1,0 +1,180 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Route class / routing Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="routing" data-type="Route">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../routing.html">routing</a> &rsaquo; <a href="../routing/Route.html">Route</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Route</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>A matchable route.</p>
+<p>This optionally matches a route and a method.</p>
+<pre class="source">
+class Route {
+
+ final String name;
+ final RoutePath path;
+ final RouteMethod method;
+ final RouteStatic static;
+
+ /**
+  * Creates a new route.
+  */
+ Route(this.name, {this.path, this.method, this.static});
+
+ /**
+  * Matches this route against an HTTP request.
+  *
+  * Returns a [RouteMatch] or [null] when the request does not match.
+  */
+ RouteMatch match(HttpRequest request) {
+   var matchers = &lt;RouteComponent&gt;[this.method, this.static, this.path];
+   var matchArgs = {};
+   for (var matcher in matchers) {
+     if (matcher != null) {
+       var args = matcher.match(request);
+       if (args != null) {
+         args.forEach((var k, var v) =&gt; matchArgs[k] = v);
+       }
+       else {
+         return null;
+       }
+     }
+   }
+   var match = new RouteMatch(this, name, matchArgs);
+   return match;
+ }
+}
+</pre>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Route">
+<button class="show-code">Code</button>
+new <strong>Route</strong>(String name, {<a href="../routing/RoutePath.html">RoutePath</a> path, <a href="../routing/RouteMethod.html">RouteMethod</a> method, <a href="../routing/RouteStatic.html">RouteStatic</a> static}) <a class="anchor-link" href="#Route"
+              title="Permalink to Route.Route">#</a></h4>
+<div class="doc">
+<p>Creates a new route.</p>
+<pre class="source">
+Route(this.name, {this.path, this.method, this.static});
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="method">
+<button class="show-code">Code</button>
+final <a href="../routing/RouteMethod.html">RouteMethod</a>         <strong>method</strong> <a class="anchor-link"
+            href="#method"
+            title="Permalink to Route.method">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final RouteMethod method;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="name">
+<button class="show-code">Code</button>
+final String         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to Route.name">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final String name;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="path">
+<button class="show-code">Code</button>
+final <a href="../routing/RoutePath.html">RoutePath</a>         <strong>path</strong> <a class="anchor-link"
+            href="#path"
+            title="Permalink to Route.path">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final RoutePath path;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="static">
+<button class="show-code">Code</button>
+final <a href="../routing/RouteStatic.html">RouteStatic</a>         <strong>static</strong> <a class="anchor-link"
+            href="#static"
+            title="Permalink to Route.static">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final RouteStatic static;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="match">
+<button class="show-code">Code</button>
+<a href="../routing/RouteMatch.html">RouteMatch</a> <strong>match</strong>(HttpRequest request) <a class="anchor-link" href="#match"
+              title="Permalink to Route.match">#</a></h4>
+<div class="doc">
+<p>Matches this route against an HTTP request.</p>
+<p>Returns a <a class="crossref" href="../routing/RouteMatch.html">RouteMatch</a> or <code>null</code> when the request does not match.</p>
+<pre class="source">
+RouteMatch match(HttpRequest request) {
+ var matchers = &lt;RouteComponent&gt;[this.method, this.static, this.path];
+ var matchArgs = {};
+ for (var matcher in matchers) {
+   if (matcher != null) {
+     var args = matcher.match(request);
+     if (args != null) {
+       args.forEach((var k, var v) =&gt; matchArgs[k] = v);
+     }
+     else {
+       return null;
+     }
+   }
+ }
+ var match = new RouteMatch(this, name, matchArgs);
+ return match;
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2013-01-05 18:56:45.049</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        
